@@ -11,7 +11,7 @@ class Index extends Component {
       <aside className={`sgsg-aside`}>
         <ul className={`sgsg-list`}>
           <li className={`sgsg-list__item`}>
-
+            item
           </li>
         </ul>
       </aside>
