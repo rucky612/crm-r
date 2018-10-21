@@ -1,0 +1,15 @@
+.sgsg-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 99;
+  background-color: map-get($sgsg-color, white);
+}
+
+.sgsg-brand {
+  width: $sgsg-aside-padding;
+  background-color: #282a3c;
+}
