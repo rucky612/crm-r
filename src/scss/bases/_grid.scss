@@ -1,0 +1,11 @@
+.sgsg-stack {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+}
+
+.sgsg-stack__item {
+  display: table-cell;
+  vertical-align: top;
+  height: 100%;
+}
