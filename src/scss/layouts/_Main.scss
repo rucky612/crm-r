@@ -1,0 +1,21 @@
+.sgsg-layout {
+  min-height: 100vh;
+  background: #f2f3f6;
+}
+
+.sgsg-main {
+  padding: $sgsg-header-padding 0 0 $sgsg-aside-padding;
+  width: 100vw;
+  height: 100vh;
+  &__header {
+    padding: 30px 30px 0 30px;
+  }
+  &__section {
+    padding: 30px;
+  }
+}
+
+.sgsg-page {
+  background-color: map_get($sgsg-color, white);
+  margin-bottom: 2.2rem;
+}

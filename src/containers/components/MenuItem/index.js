@@ -1,59 +1,32 @@
 import React, { Component } from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import SubMenu from '../SubMenu'
-import connect from 'react-redux/es/connect/connect'
 
 class Index extends Component {
 
   constructor(props) {
     super(props)
 
-    this.menuRef = React.createRef()
+    const isOpen = props.history.location.pathname.includes(props.url)
     this.state = {
-      isOpen: false
+      isOpen: isOpen,
+      active: 'sgsg-menu__item--active'
     }
-  }
-
-  componentDidMount() {
-    const correctRoute = this.props.pathname.includes(this.props.url)
-    if(correctRoute) {
-      this.menuRef.current.classList.add("sgsg-menu__item--active")
-      this.setState({
-        isOpen: true
-      })
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.toggleSubMenu()
   }
 
   toggleSubMenu = () => {
-    const urlCheck = this.props.history.location.pathname === this.props.url
-    if(urlCheck) {
-      this.setState({
-        ...this.state,
-        isOpen: !this.state.isOpen
-      })
-    }
-  }
-
-  toggleClass = () => {
-    const urlCheck = this.props.history.location.pathname === this.props.url
-    const liClassList = this.menuRef.current.classList
-    if(liClassList.contains("sgsg-menu__item--active") && urlCheck) {
-      liClassList.remove("sgsg-menu__item--active")
-    } else {
-      liClassList.add("sgsg-menu__item--active")
-    }
+    this.setState({
+      ...this.state,
+      isOpen: !this.state.isOpen
+    })
   }
 
   render() {
     return (
-      <li ref={this.menuRef} onClick={() => {this.toggleSubMenu(); this.toggleClass()}} className={`sgsg-menu__item`}>
-        <NavLink className={`sgsg-menu__link`}  to={`${this.props.url}`}>
+      <li className={`sgsg-menu__item ${this.state.isOpen ? this.state.active : ''}`}>
+        <div onClick={this.toggleSubMenu} className={`sgsg-menu__link`}>
           <span className={`sgsg-menu__text`}>{this.props.name}</span>
-        </NavLink>
+        </div>
         <SubMenu children={this.props.children} isOpen={this.state.isOpen}/>
       </li>
     )
@@ -61,12 +34,4 @@ class Index extends Component {
 }
 
 
-const mapStateToProps = ({router}) => {
-  return {
-    pathname: router.location.pathname
-  }
-}
-
-export default withRouter(connect(
-  mapStateToProps
-)(Index))
+export default withRouter(Index)

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import connect from 'react-redux/es/connect/connect'
 import SubMenuItem from '../SubMenuItem'
 
 class Index extends Component {
@@ -10,8 +9,13 @@ class Index extends Component {
 
     this.subMenuRef = React.createRef()
     this.state = {
-      check: false
+      check: false,
+      isOpen: props.isOpen
     }
+  }
+
+  componentDidMount() {
+    this.openMenu(this.props.isOpen)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,12 +42,8 @@ class Index extends Component {
   }
 }
 
-const mapStateToProps = ({router}) => {
-  return {
-    pathname: router.location.pathname
-  }
-}
+const mapStateToProps = ({router}) => ({
+  pathname: router.location.pathname
+})
 
-export default withRouter(connect(
-  mapStateToProps
-)(Index))
+export default withRouter(Index)
