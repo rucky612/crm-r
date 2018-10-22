@@ -1,0 +1,44 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  box-sizing: border-box;
+
+  h1,h2,h3,h4 {
+    margin: 0;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-size: 13px;
+  font-weight: 300;
+  font-family: Poppins;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+ul {
+  margin : 0;
+}
