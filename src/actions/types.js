@@ -1,0 +1,3 @@
+export const TEMPLATES = {
+  POST: "SGSG-TEMPLATES-POST"
+}

@@ -10,6 +10,24 @@
   height: 100%;
 }
 
+.sgsg-m-5--right {
+  margin-right: .5rem;
+}
+
 .sgsg-m-auto--right {
   margin-right: auto !important;
+}
+
+.sgsg-border--right {
+  border-right: 1px solid map_get($sgsg-color, metal);
+}
+
+.col-4 {
+  &:first-of-type {
+    padding-right: 26px;
+  }
+}
+
+.col-8 {
+  padding-left: 26px;
 }

@@ -1,0 +1,34 @@
+.sgsg-input {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid map_get($sgsg-color, metal);
+  border-radius: 3px;
+  outline: none;
+  &--success {
+    color: map_get($sgsg-color, success);
+    border: 1px solid map_get($sgsg-color, success);
+    border-radius: 3px;
+  }
+  &--danger {
+    color: map_get($sgsg-color, danger);
+    border: 1px solid map_get($sgsg-color, danger);
+    border-radius: 3px;
+  }
+  &--brand {
+    color: map_get($sgsg-color, brand);
+    border: 1px solid map_get($sgsg-color, brand);
+    border-radius: 3px;
+  }
+
+  &__help {
+    &--success {
+      font-weight: 500;
+      color: map_get($sgsg-color, success);
+    }
+    &--danger {
+      font-weight: 500;
+      color: map_get($sgsg-color, danger);
+    }
+  }
+}

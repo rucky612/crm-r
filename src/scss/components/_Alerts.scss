@@ -1,0 +1,22 @@
+.sgsg-alerts {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  &--success {
+    color: map_get($sgsg-color, white);
+    background-color: map_get($sgsg-color, success);
+    border-color: map_get($sgsg-color, success);
+  }
+  &--danger {
+    color: map_get($sgsg-color, white);
+    background-color: map_get($sgsg-color, danger);
+    border-color: map_get($sgsg-color, danger);
+  }
+  &--warning {
+    color: map_get($sgsg-color, white);
+    background-color: map_get($sgsg-color, warning);
+    border-color: map_get($sgsg-color, warning);
+  }
+}

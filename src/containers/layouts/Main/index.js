@@ -15,9 +15,9 @@ class Index extends Component {
         <MainHeader/>
         <div className={`sgsg-main__section`}>
           <Switch>
-            <Route exact={true} path="/templates" component={Templates}/>
-            <Route exact={true} path="/messages" component={Messages}/>
-            <Route exact={true} path="/utils" component={Utils}/>
+            <Route path="/templates" component={Templates}/>
+            <Route path="/messages" component={Messages}/>
+            <Route path="/utils" component={Utils}/>
           </Switch>
         </div>
       </main>

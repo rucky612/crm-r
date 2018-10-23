@@ -8,14 +8,9 @@
   width: 100vw;
   height: 100vh;
   &__header {
-    padding: 30px 30px 0 30px;
+    padding: 26px 26px 0 26px;
   }
   &__section {
-    padding: 30px;
+    padding: 26px;
   }
-}
-
-.sgsg-page {
-  background-color: map_get($sgsg-color, white);
-  margin-bottom: 2.2rem;
 }

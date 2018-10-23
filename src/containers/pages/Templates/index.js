@@ -5,17 +5,27 @@ import Home from './Home'
 
 class Index extends Component {
 
+  renderHead = () => {
+    const path = this.props.location.pathname
+    if (path === '/templates') {
+      return <h3>템플릿 내역</h3>
+    } else {
+      return <h3>템플릿 생성</h3>
+    }
+  }
+
   render() {
-    // console.log(this.props)
     return (
       <article className={`sgsg-page`}>
-        <header>
-          <h3></h3>
+        <header className={`sgsg-page__header`}>
+          {this.renderHead()}
         </header>
-        <Switch>
-          <Route path="/templates/create" component={Create}/>
-          <Route path="/templates" component={Home}/>
-        </Switch>
+        <div className={`sgsg-page__section`}>
+          <Switch>
+            <Route path="/templates/create" component={Create}/>
+            <Route path="/templates" component={Home}/>
+          </Switch>
+        </div>
       </article>
     )
   }

@@ -1,1 +1,15 @@
-@import "Template";
+.sgsg-page {
+  background-color: map_get($sgsg-color, white);
+  margin-bottom: 2.2rem;
+  &__header {
+    padding: 26px 26px 0 26px;
+  }
+  &__section {
+    padding: 26px;
+  }
+}
+
+
+
+@import "Templates";
+

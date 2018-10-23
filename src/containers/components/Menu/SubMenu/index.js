@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import SubMenuItem from '../SubMenuItem'
+import SubMenuItem from '../SubMenuItem/index'
 
 class Index extends Component {
 
@@ -42,8 +42,5 @@ class Index extends Component {
   }
 }
 
-const mapStateToProps = ({router}) => ({
-  pathname: router.location.pathname
-})
 
 export default withRouter(Index)

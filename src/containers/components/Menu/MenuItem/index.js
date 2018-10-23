@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import SubMenu from '../SubMenu'
+import SubMenu from '../SubMenu/index'
 
 class Index extends Component {
 
