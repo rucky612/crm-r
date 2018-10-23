@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router'
 import Templates from '../../pages/Templates'
 import Messages from '../../pages/Messages'
-import Utils from '../../pages/Utils'
+import Utils from '../../pages/Setting'
 import MainHeader from './MainHeader'
 
 class Index extends Component {

@@ -21,15 +21,15 @@ class Index extends Component {
               </button>
             </div>
             <div className="modal-body">
-
+              {this.props.children}
             </div>
             <div className="modal-footer">
               <button type="button"
                       className="btn btn-secondary"
-                      onClick={this.props.onOk}>{this.props.cancelText}</button>
+                      onClick={this.props.onCancel}>{this.props.cancelText}</button>
               <button type="button"
                       className="btn btn-primary"
-                      onClick={this.props.onCancel}>{this.props.okText}</button>
+                      onClick={this.props.onOk}>{this.props.okText}</button>
             </div>
           </div>
         </div>

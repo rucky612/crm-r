@@ -22,6 +22,14 @@ class Index extends Component {
     }
   }
 
+  onFocus = ({target}) => {
+    target.classList.add("sgsg-input--brand")
+  }
+
+  onBlur = ({target}) => {
+    target.classList.remove("sgsg-input--brand")
+  }
+
   render() {
     return (
       <div className="form-group">
@@ -29,8 +37,8 @@ class Index extends Component {
         <textarea className={`sgsg-input ${this.inputColor(this.props.valid)}`}
                   name={this.props.name}
                   rows={this.props.rows}
-                  onBlur={this.props.onBlur}
-                  onFocus={this.props.onFocus}
+                  onBlur={this.onBlur}
+                  onFocus={this.onFocus}
                   onChange={this.props.onChange}/>
         {this.renderHelp(this.props.valid)}
       </div>

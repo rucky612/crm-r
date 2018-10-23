@@ -4,6 +4,7 @@
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 4px;
+  font-weight: 400;
   &--success {
     color: map_get($sgsg-color, white);
     background-color: map_get($sgsg-color, success);

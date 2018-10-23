@@ -15,22 +15,29 @@ class Index extends Component {
       return "sgsg-input--danger"
     } else if(state === "success") {
       return "sgsg-input--success"
-    } else if(state === "brand") {
-      return "sgsg-input--brand"
     } else {
       return ""
     }
+  }
+
+  onFocus = ({target}) => {
+    target.classList.add("sgsg-input--brand")
+  }
+
+  onBlur = ({target}) => {
+    target.classList.remove("sgsg-input--brand")
   }
 
   render() {
     return (
       <div className="input-group mb-3">
         <label>{this.props.label}</label>
-        <input type="text"
+        <input type={this.props.type ? this.props.type : "text"}
                name={this.props.name}
+               value={this.props.value}
                className={`sgsg-input ${this.inputColor(this.props.valid)}`}
-               onFocus={this.props.onFocus}
-               onBlur={this.props.onBlur}
+               onFocus={this.onFocus}
+               onBlur={this.onBlur}
                onChange={this.props.onChange}
                placeholder={this.props.placeholder} />
         {this.renderHelp(this.props.valid)}

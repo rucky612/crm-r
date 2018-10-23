@@ -1,12 +1,16 @@
 import { TEMPLATES } from '../actions/types'
 
 const initState = {
-  authorId: 0,
-  key: "",
-  title: "",
-  body: "",
-  memo: "",
-  replacements: []
+  rows: [],
+  count: 0,
+  row: {
+    authorId: 0,
+    key: "",
+    title: "",
+    body: "",
+    memo: "",
+    replacements: []
+  }
 }
 
 export default function(state = initState, action) {

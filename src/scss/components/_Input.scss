@@ -19,6 +19,7 @@
     color: map_get($sgsg-color, brand);
     border: 1px solid map_get($sgsg-color, brand);
     border-radius: 3px;
+    box-shadow: 2px 2px 5px map_get($sgsg-color, brand);
   }
 
   &__help {

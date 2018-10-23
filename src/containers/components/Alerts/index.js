@@ -10,6 +10,8 @@ class Index extends Component {
         return "sgsg-alerts--danger"
       case "warning":
         return "sgsg-alerts--warning"
+      default:
+        return ""
     }
   }
 
