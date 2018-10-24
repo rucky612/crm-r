@@ -2,46 +2,48 @@ import React, { Component } from 'react'
 
 class Index extends Component {
 
-  rowCheckbox = () => {
-    if(this.props.rowSelection) {
-      return <th>
-        <input type="checkbox"/>
-      </th>
-    }
-  }
-
-  CheckboxCell = () => {
-    if(this.props.rowSelection){
-      return <td>
-        <input type="checkbox"></input>
-      </td>
+  cellClassName = (align) => {
+    if (align === 'center') {
+      return 'text-align--center'
+    } else {
+      return ''
     }
   }
 
   tableHeader = (columns) => {
-    if(!this.props.columns) return;
+    if (!this.props.columns) return
     return columns.map((item, index) => {
-      return <th key={index} ref={el => { this[item.dataIndex] = el }} scope="col-1">{item.title}</th>
+      return <th key={index}
+                 ref={el => {
+                   this[item.dataIndex] = el
+                 }}
+                 scope="col-1">{item.title}</th>
     })
   }
 
   tableRows = (dataSource) => {
-    if(!dataSource) return;
+    if (!dataSource) return
     return dataSource.map((item, index) => {
       return <tr key={index}>
-        {this.CheckboxCell()}
-        {this.tableCells(item)}
+        {this.tableCells(item, index)}
       </tr>
     })
   }
 
-  tableCells = (cell) => {
-    if(!this.props.columns) return;
+  tableCells = (cell, rowIndex) => {
+    if (!this.props.columns) return
     return this.props.columns.map((name, index) => {
-      console.log(cell[name.dataIndex])
-      if(name.render){
-        return <td  key={index}>
-          {name.render()}
+      if (name.render) {
+        return <td className={`vertical-align--center
+                   ${this.cellClassName(this.props.align)}`}
+                   key={index}>
+          {name.render({
+            cell: cell[name.dataIndex],
+            name: name.dataIndex,
+            title: name.title,
+            index,
+            rowData: cell,
+            rowIndex })}
         </td>
       }
       return <td key={index}>{cell[name.dataIndex]}</td>
@@ -54,7 +56,6 @@ class Index extends Component {
         <table className="table">
           <thead className="thead-dark">
           <tr>
-            {this.rowCheckbox()}
             {this.tableHeader(this.props.columns)}
           </tr>
           </thead>

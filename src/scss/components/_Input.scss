@@ -16,10 +16,19 @@
     border-radius: 3px;
   }
   &--brand {
-    color: map_get($sgsg-color, brand);
     border: 1px solid map_get($sgsg-color, brand);
     border-radius: 3px;
     box-shadow: 2px 2px 5px map_get($sgsg-color, brand);
+  }
+
+  &--large {
+    padding: 1.5rem;
+  }
+  &--middle {
+    padding: 1rem;
+  }
+  &--small {
+    padding: 0.3rem 0.6rem;
   }
 
   &__help {

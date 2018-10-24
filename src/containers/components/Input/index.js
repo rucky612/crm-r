@@ -10,6 +10,18 @@ class Index extends Component {
     }
   }
 
+  inputSize = (size) => {
+    if(size === "large") {
+      return "sgsg-input--large"
+    } else if(size === "middle") {
+      return "sgsg-input--middle"
+    } else if(size === "small") {
+      return "sgsg-input--small"
+    } else {
+      return ""
+    }
+  }
+
   inputColor = (state) => {
     if(state === "danger") {
       return "sgsg-input--danger"
@@ -22,20 +34,23 @@ class Index extends Component {
 
   onFocus = ({target}) => {
     target.classList.add("sgsg-input--brand")
+    if(this.props.onFocus) this.props.onFocus()
   }
 
   onBlur = ({target}) => {
     target.classList.remove("sgsg-input--brand")
+    if(this.props.onBlur) this.props.onBlur()
   }
 
   render() {
     return (
-      <div className="input-group mb-3">
+      <div className="input-group">
         <label>{this.props.label}</label>
         <input type={this.props.type ? this.props.type : "text"}
+               spellCheck={false}
                name={this.props.name}
                value={this.props.value}
-               className={`sgsg-input ${this.inputColor(this.props.valid)}`}
+               className={`sgsg-input ${this.inputColor(this.props.valid)} ${this.inputSize(this.props.size)}`}
                onFocus={this.onFocus}
                onBlur={this.onBlur}
                onChange={this.props.onChange}

@@ -4,5 +4,5 @@ import createTemplate from './create-template'
 
 export default combineReducers({
   templates,
-  createTemplate
+  createTemplate,
 })
