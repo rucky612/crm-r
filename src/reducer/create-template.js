@@ -1,16 +1,15 @@
 import { TEMPLATES } from '../actions/types'
 
 const initState = {
-  authorId: 0,
-  key: '',
-  title: '',
-  body: '',
-  memo: '',
-  replacements: [],
+  authorId: 23,
+  key: "",
+  title: "",
+  body: "",
+  memo: "",
+  replacements: []
 }
 
 export default function(state = initState, action) {
-  console.log(action.input)
   switch (action.type) {
     case TEMPLATES.FIX:
       return {

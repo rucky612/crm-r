@@ -26,10 +26,10 @@ class Index extends Component {
             <div className="modal-footer">
               <button type="button"
                       className="btn btn-secondary"
-                      onClick={this.props.onCancel}>{this.props.cancelText}</button>
+                      onClick={this.props.onCancel}>{this.props.cancelText ? this.props.cancelText : "취소"}</button>
               <button type="button"
                       className="btn btn-primary"
-                      onClick={this.props.onOk}>{this.props.okText}</button>
+                      onClick={this.props.onOk}>{this.props.okText ? this.props.okText : "확인"}</button>
             </div>
           </div>
         </div>
