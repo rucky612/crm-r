@@ -9,19 +9,19 @@ class Index extends Component {
 
   createReplacement = () => {
     const replacement = {
-      title: '',
-      maxByte: '',
-      defaultValue: '',
-      keyword: ''
+      title: "",
+        maxByte: "",
+        defaultValue: "",
+        keyword: ""
     }
     this.props.createReplacement(replacement)
   }
 
   visibleAlerts = (tableData) => {
-    if (tableData.length === 0) {
+    if(tableData.length === 0) {
       return <Alerts state={'warning'}
-                     strong={'경고! '}
-                     plain={'변환자를 입력하세요.'}/>
+              strong={'경고! '}
+              plain={'변환자를 입력하세요.'}/>
     }
   }
 
@@ -33,16 +33,14 @@ class Index extends Component {
         </header>
         <section className={`sgsg-replacements__section`}>
           {this.visibleAlerts(this.props.createTemplate.replacements)}
-          <ReplacementsTable errorCode={this.props.errorCode}/>
+          <ReplacementsTable/>
           <button onClick={this.createReplacement}
                   className={`btn btn-info btn-block mt-4`}>변환자 추가
           </button>
         </section>
         <footer className={`sgsg-replacements__footer`}>
           <button onClick={this.createReplacement} className={`btn btn-primary float-right`}>생성</button>
-          <button onClick={this.props.resetReplacements}
-                  className={`btn btn-secondary sgsg-m-5--right float-right`}>초기화
-          </button>
+          <button onClick={this.props.resetReplacements} className={`btn btn-secondary sgsg-m-5--right float-right`}>초기화</button>
         </footer>
       </section>
     )
@@ -55,6 +53,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   createReplacement: bindActionCreators(actions.createReplacement, dispatch),
+  fixReplacement: bindActionCreators(actions.fixReplacements, dispatch),
   resetReplacements: bindActionCreators(actions.resetReplacements, dispatch)
 })
 

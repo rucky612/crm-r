@@ -1,13 +1,12 @@
 import { TEMPLATES } from './types'
 
-export const fetchTemplate = (payload) => ({
-  type: TEMPLATES.FETCH,
-  payload
+export const initTemplate = () => ({
+  type: TEMPLATES.INIT
 })
 
-export const errorTemplate = (error, message) => ({
-  type: TEMPLATES.ERROR,
-  error: error
+export const validTemplate = (input) => ({
+  type: TEMPLATES.VALID,
+  input
 })
 
 export const fixTemplate = (input) => ({
@@ -36,6 +35,12 @@ export const resetReplacements = () => ({
 
 export const fixReplacements = (input, index) => ({
   type: TEMPLATES.REPLACEMENTS.FIX,
+  input,
+  index
+})
+
+export const validateReplacement = (input, index) => ({
+  type: TEMPLATES.REPLACEMENTS.VALID,
   input,
   index
 })

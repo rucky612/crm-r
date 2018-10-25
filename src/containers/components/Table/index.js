@@ -23,9 +23,9 @@ class Index extends Component {
 
   tableRows = (dataSource) => {
     if (!dataSource) return
-    return dataSource.map((cell, index) => {
+    return dataSource.map((item, index) => {
       return <tr key={index}>
-        {this.tableCells(cell, index)}
+        {this.tableCells(item, index)}
       </tr>
     })
   }
@@ -38,7 +38,7 @@ class Index extends Component {
                    ${this.cellClassName(this.props.align)}`}
                    key={index}>
           {name.render({
-            value: cell[name.dataIndex],
+            cell: cell[name.dataIndex],
             name: name.dataIndex,
             title: name.title,
             index,
