@@ -1,46 +1,56 @@
-import { TEMPLATES } from './types'
+import {TEMPLATES} from './types'
 
-export const initTemplate = () => ({
-  type: TEMPLATES.INIT
+export const fetchRequestPut = (id, template) => ({
+    type: TEMPLATES.FETCH_REQUEST.PUT,
+    template,
+    id
 })
 
-export const validTemplate = (input) => ({
-  type: TEMPLATES.VALID,
-  input
+export const fetchRequestInitPost = () => ({
+    type: TEMPLATES.FETCH_REQUEST.INIT_POST,
 })
 
-export const fixTemplate = (input) => ({
-  type: TEMPLATES.FIX,
-  input
+export const fetchRequestPost = (template) => ({
+    type: TEMPLATES.FETCH_REQUEST.POST,
+    template
 })
 
-export const postTemplate = (template) => ({
-  type: TEMPLATES.POST,
-  payload: template
+export const fetchRequestGet = (query) => ({
+    type: TEMPLATES.FETCH_REQUEST.GET,
+    query
 })
 
-export const createReplacement = (replacement) => ({
-  type: TEMPLATES.REPLACEMENTS.CREATE,
-  payload: replacement
+export const fetchRequestDelete = (id, query) => ({
+    type: TEMPLATES.FETCH_REQUEST.DELETE,
+    id,
+    query
 })
 
-export const removeReplacement = (key) => ({
-  type: TEMPLATES.REPLACEMENTS.REMOVE,
-  payload: key
+export const fetchSuccess = (response) => ({
+    type: TEMPLATES.FETCH_SUCCESS,
+    response
 })
 
-export const resetReplacements = () => ({
-  type: TEMPLATES.REPLACEMENTS.RESET
+export const editTemplate = ({target}) => ({
+    type: TEMPLATES.EDIT,
+    target
 })
 
-export const fixReplacements = (input, index) => ({
-  type: TEMPLATES.REPLACEMENTS.FIX,
-  input,
-  index
+export const editReplacement = ({target}, index) => ({
+    type: TEMPLATES.EDIT_REPLACEMENT,
+    index,
+    target
 })
 
-export const validateReplacement = (input, index) => ({
-  type: TEMPLATES.REPLACEMENTS.VALID,
-  input,
-  index
+export const addReplacement = () => ({
+    type: TEMPLATES.ADD_REPLACEMENT,
+})
+
+export const removeReplacement = (index) => ({
+    type: TEMPLATES.REMOVE_REPLACEMENT,
+    index
+})
+
+export const resetReplacement = () => ({
+    type: TEMPLATES.RESET_REPLACEMENT,
 })

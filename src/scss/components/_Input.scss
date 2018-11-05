@@ -1,4 +1,5 @@
 .sgsg-input {
+  position: relative;
   display: block;
   width: 100%;
   padding: 1rem;
@@ -13,6 +14,11 @@
   &--danger {
     color: map_get($sgsg-color, danger);
     border: 1px solid map_get($sgsg-color, danger);
+    border-radius: 3px;
+  }
+  &--warning {
+    color: map_get($sgsg-color, warning);
+    border: 1px solid map_get($sgsg-color, warning);
     border-radius: 3px;
   }
   &--brand {
@@ -39,6 +45,10 @@
     &--danger {
       font-weight: 500;
       color: map_get($sgsg-color, danger);
+    }
+    &--warning {
+      font-weight: 500;
+      color: map_get($sgsg-color, warning);
     }
   }
 }

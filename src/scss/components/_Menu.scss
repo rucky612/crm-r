@@ -47,11 +47,11 @@
           }
           &--active {
             color: map_get($sgsg-color, white);
-            &:before {
+            &::before {
               content: "";
               position: absolute;
               top: 0;
-              left: 0;
+              left: 6px;
               width: 3px;
               height: 100%;
               background-color: map_get($sgsg-color, primary);

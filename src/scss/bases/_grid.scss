@@ -22,12 +22,21 @@
   border-right: 1px solid map_get($sgsg-color, metal);
 }
 
+.sgsg-absolute {
+  position: absolute;
+  &--top {
+    top: 0;
+  }
+  &--right {
+    right: 0;
+  }
+}
+
 .col-4 {
   &:first-of-type {
     padding-right: 26px;
   }
 }
-
 .col-8 {
   padding-left: 26px;
 }
