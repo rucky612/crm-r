@@ -65,6 +65,7 @@ class Index extends Component {
                        spellCheck={false}
                        name={this.props.name}
                        value={this.props.value ? this.props.value : ""}
+                       readOnly={this.props.readOnly ? this.props.readOnly : false}
                        className={`sgsg-input ${this.inputColor(this.props.valid)} ${this.inputSize(this.props.size)}`}
                        onFocus={this.onFocus}
                        onBlur={this.onBlur}

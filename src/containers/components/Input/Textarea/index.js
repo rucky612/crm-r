@@ -42,6 +42,7 @@ class Index extends Component {
                 <textarea className={`sgsg-input ${this.inputColor(this.props.valid)}`}
                           name={this.props.name}
                           value={this.props.value}
+                          readOnly={this.props.readOnly ? this.props.readOnly : false}
                           rows={this.props.rows}
                           onBlur={this.onBlur}
                           onFocus={this.onFocus}

@@ -38,5 +38,7 @@
   }
 }
 .col-8 {
-  padding-left: 26px;
+  &:nth-of-type(2) {
+    padding-left: 26px;
+  }
 }
