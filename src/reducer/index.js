@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import templates from './templates'
-import createTemplate from './create-template'
+import {combineReducers} from 'redux'
+import templateList from './templateList'
+import templateForm from './templateForm'
 
 export default combineReducers({
-  templates,
-  createTemplate,
+    templateList,
+    templateForm
 })

@@ -1,71 +1,71 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 class Index extends Component {
 
-  cellClassName = (align) => {
-    if (align === 'center') {
-      return 'text-align--center'
-    } else {
-      return ''
+    cellClassName = (align) => {
+        if (align === 'center') {
+            return 'text-align--center'
+        } else {
+            return ''
+        }
     }
-  }
 
-  tableHeader = (columns) => {
-    if (!this.props.columns) return
-    return columns.map((item, index) => {
-      return <th key={index}
-                 ref={el => {
-                   this[item.dataIndex] = el
-                 }}
-                 scope="col-1">{item.title}</th>
-    })
-  }
+    tableHeader = (columns) => {
+        if (!this.props.columns) return
+        return columns.map((item, index) => {
+            return <th key={index}
+                       ref={el => {
+                           this[item.dataIndex] = el
+                       }}
+                       scope="col-1">{item.title}</th>
+        })
+    }
 
-  tableRows = (dataSource) => {
-    if (!dataSource) return
-    return dataSource.map((item, index) => {
-      return <tr key={index}>
-        {this.tableCells(item, index)}
-      </tr>
-    })
-  }
+    tableRows = (dataSource) => {
+        if (!dataSource) return
+        return dataSource.map((cell, index) => {
+            return <tr key={index}>
+                {this.tableCells(cell, index)}
+            </tr>
+        })
+    }
 
-  tableCells = (cell, rowIndex) => {
-    if (!this.props.columns) return
-    return this.props.columns.map((name, index) => {
-      if (name.render) {
-        return <td className={`vertical-align--center
-                   ${this.cellClassName(this.props.align)}`}
-                   key={index}>
-          {name.render({
-            cell: cell[name.dataIndex],
-            name: name.dataIndex,
-            title: name.title,
-            index,
-            rowData: cell,
-            rowIndex })}
-        </td>
-      }
-      return <td key={index}>{cell[name.dataIndex]}</td>
-    })
-  }
+    tableCells = (cell, rowIndex) => {
+        if (!this.props.columns) return
+        return this.props.columns.map((name, index) => {
+            if (name.render) {
+                return <td className={`vertical-align--center position-relative ${this.cellClassName(this.props.align)}`}
+                           key={index}>
+                    {name.render({
+                        value: cell[name.dataIndex],
+                        name: name.dataIndex,
+                        title: name.title,
+                        index,
+                        rowData: cell,
+                        rowIndex
+                    })}
+                </td>
+            }
+            return <td key={index}>{cell[name.dataIndex]}</td>
+        })
+    }
 
-  render() {
-    return (
-      <div>
-        <table className="table">
-          <thead className="thead-dark">
-          <tr>
-            {this.tableHeader(this.props.columns)}
-          </tr>
-          </thead>
-          <tbody>
-          {this.tableRows(this.props.dataSource)}
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div>
+                <table className="table">
+                    <thead className="thead-dark">
+                    <tr>
+                        {this.tableHeader(this.props.columns)}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.tableRows(this.props.dataSource)}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
 }
 
 export default Index
