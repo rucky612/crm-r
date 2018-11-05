@@ -1,9 +1,13 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import Header from '../layouts/Header/index'
+import Aside from '../layouts/Aside/index'
+import Main from '../layouts/Main/index'
 
 const App = () => (
-  <div>
-    hello
+  <div className={'sgsg-layout'}>
+    <Header/>
+    <Aside/>
+    <Main/>
   </div>
 )
 

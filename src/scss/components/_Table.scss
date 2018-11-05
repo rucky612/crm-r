@@ -1,0 +1,19 @@
+.table {
+  border-bottom: 1px solid #32383e;
+  .text-align {
+    &--center {
+      text-align: center;
+    }
+  }
+  .vertical-align {
+    &--middle {
+      vertical-align: middle;
+    }
+  }
+  .input-group {
+    .sgsg-input {
+      padding: 0.3rem 0.6rem;
+      margin-bottom: 0;
+    }
+  }
+}
