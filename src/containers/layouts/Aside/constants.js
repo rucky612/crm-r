@@ -9,7 +9,7 @@ export const AsideInfo = [
       },
       {
         name: '템플릿 내역',
-        url: '/templates/home'
+        url: '/templates'
       }
     ]
   },
@@ -19,7 +19,7 @@ export const AsideInfo = [
     children: [
       {
         name: '메시지 내역',
-        url: '/messages/home'
+        url: '/messages'
       },
       {
         name: '메시지 발송',

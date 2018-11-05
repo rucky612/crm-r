@@ -1,0 +1,13 @@
+.sgsg-textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid map_get($sgsg-color, metal);
+  border-radius: 3px;
+  padding: 1rem;
+  &--success {
+    border: 1px solid map_get($sgsg-color, success);
+  }
+  &--danger {
+    border: 1px solid map_get($sgsg-color, danger);
+  }
+}

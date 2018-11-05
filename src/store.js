@@ -3,12 +3,15 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducer'
+import createSagaMiddleware from 'redux-saga'
+import root from './sagas'
 
 export const history = createHistory()
 
 const initialState = {}
 const enhancers = []
-const middleware = [thunk, routerMiddleware(history)]
+const sagaMiddleware = createSagaMiddleware()
+const middleware = [thunk, routerMiddleware(history), sagaMiddleware]
 
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
@@ -28,3 +31,5 @@ export default createStore(
   initialState,
   composedEnhancers
 )
+
+sagaMiddleware.run(root)

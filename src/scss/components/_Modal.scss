@@ -1,0 +1,12 @@
+.modal {
+  transition: .3s;
+  &.show {
+    display: block;
+  }
+  &-backdrop {
+    &.show {
+      opacity: 0.25!important;
+    }
+  }
+}
+
