@@ -11,6 +11,23 @@ const initState = {
 
 export default function (state = initState, action) {
     switch (action.type) {
+        case MESSAGES.EDIT_PHONENUM:
+            return {
+                ...state,
+                receivers: [
+                    ...state.receivers.slice(0, action.index),
+                    {
+                        ...state.receivers[action.index],
+                        phoneNum: action.phoneNum
+                    },
+                    ...state.receivers.slice(action.index + 1, state.receivers.length)
+                ]
+            }
+        case MESSAGES.REOMVE_RECEIVERS:
+            state.receivers.splice(action.index, 1)
+            return {
+                ...state
+            }
         case MESSAGES.ADD_RECEIVERS:
             return {
                 ...state,
@@ -19,29 +36,36 @@ export default function (state = initState, action) {
                     {
                         phoneNum: "",
                         replacements: [
-                            {
-                                key: "",
-                                value: ""
-                            },
-                            {
-                                key: "",
-                                value: ""
-                            },
-                            {
-                                key: "",
-                                value: ""
-                            }
+                            ...state.row.replacements.map(item => {
+                                return {
+                                    key: item.keyword,
+                                    value: item.defaultValue
+                                }
+                            })
                         ]
                     }
                 ]
             }
-        case MESSAGES.EDIT:
+        case MESSAGES.SELECT_TEMPLATE:
             return {
                 ...state,
                 ...action.info,
                 row: {
                     ...action.data
-                }
+                },
+                receivers: [
+                    {
+                        phoneNum: "",
+                        replacements: [
+                            ...action.data.replacements.map(item => {
+                                return {
+                                    key: item.keyword,
+                                    value: item.defaultValue
+                                }
+                            })
+                        ]
+                    }
+                ]
             }
         case MESSAGES.SEARCH_TEMPLATES:
             return {
@@ -60,6 +84,11 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 error: action.error
+            }
+        case MESSAGES.ERROR_RESET:
+            return {
+                ...state,
+                error: null
             }
         default:
             return state;

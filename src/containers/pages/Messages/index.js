@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import SelectTemp from './SelectTemp'
-import InsertReceivers from './InsertReceivers'
+import Select from './Create/Select'
+import Receivers from './Create/Receivers'
 
 class Index extends Component {
 
@@ -16,8 +16,8 @@ class Index extends Component {
                 </header>
                 <div className={`sgsg-page__section`}>
                     <Switch>
-                        <Route path="/messages/create/select" component={SelectTemp}/>
-                        <Route path="/messages/create/receivers" component={InsertReceivers}/>
+                        <Route path="/messages/create/select" component={Select}/>
+                        <Route path="/messages/create/receivers" component={Receivers}/>
                         <Redirect from="/messages/create" to="/messages/create/select"/>
                     </Switch>
                 </div>

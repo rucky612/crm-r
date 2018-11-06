@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Table from '../../../../components/Table'
+import Table from '../../../../../components/Table'
 
 class Index extends Component {
     constructor(props) {

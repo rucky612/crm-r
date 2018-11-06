@@ -3,8 +3,14 @@ import Popover from '../Popover'
 
 class Index extends Component {
 
+    static defaultProps = {
+        onChange: () => {
+        },
+        readOnly: false
+    }
+
     renderPopover = (string = "") => {
-        if(string.length !== 0) {
+        if (string.length !== 0) {
             return <Popover bodyText={string}/>
         } else {
             return;
@@ -16,13 +22,13 @@ class Index extends Component {
             return <p className={`sgsg-input__help sgsg-input__help--danger`}>
                 {this.props.help}
             </p>
-        } else if(state === "warning") {
+        } else if (state === "warning") {
             return <p className={`sgsg-input__help sgsg-input__help--warning`}>
                 {this.props.help}
             </p>
         }
     }
-    
+
     inputSize = (size) => {
         if (size === "large") {
             return "sgsg-input--large"
@@ -48,7 +54,7 @@ class Index extends Component {
     }
 
     onFocus = ({target}) => {
-        target.classList.add("sgsg-input--brand")
+        if (!this.props.readOnly) target.classList.add("sgsg-input--brand")
         if (this.props.onFocus) this.props.onFocus()
     }
 
@@ -65,7 +71,7 @@ class Index extends Component {
                        spellCheck={false}
                        name={this.props.name}
                        value={this.props.value ? this.props.value : ""}
-                       readOnly={this.props.readOnly ? this.props.readOnly : false}
+                       readOnly={this.props.readOnly}
                        className={`sgsg-input ${this.inputColor(this.props.valid)} ${this.inputSize(this.props.size)}`}
                        onFocus={this.onFocus}
                        onBlur={this.onBlur}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Input from '../../../components/Input'
-import Textarea from '../../../components/Input/Textarea'
+import Input from '../../../../components/Input'
+import Textarea from '../../../../components/Input/Textarea'
 import connect from 'react-redux/es/connect/connect'
 
 class Index extends Component {

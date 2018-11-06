@@ -1,18 +1,47 @@
 import React, {Component} from 'react'
 import connect from 'react-redux/es/connect/connect'
 import {bindActionCreators} from "redux";
-import * as actions from '../../../../actions/messages'
-import Alerts from '../../../components/Alerts'
+import * as actions from '../../../../../actions/messages'
+import Alerts from '../../../../components/Alerts'
+import Modal from '../../../../components/Modal'
+import Pagination from '../../../../components/Pagnation'
 import SelectTempTable from './SelectTempTable'
 import SelectTempSearch from './SelectTempSearch'
-import SelectTempForm from '../SelectTempForm'
+import SelectTempForm from '../SelectForm'
 
 class Index extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            visible: false,
+            errorMsg: ""
+        }
+    }
+    
     componentDidMount() {
         this.props.fetchGetTemplates(`limit=15&offset=0&sortCreatedAt=desc`)
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.messageForm.error !== null && !this.state.visible) {
+            this.setState({
+                ...this.state,
+                visible: true,
+                errorMsg: nextProps.messageForm.error
+            })
+        }
+    }
+
+    toggleErrorModal = () => {
+        this.setState({
+            ...this.state,
+            visible: !this.state.visible,
+            errorMsg: ""
+        })
+    }
+    
     renderWarning = () => {
         if (this.props.messageForm.rows.length === 0) {
             return <Alerts strong={`경고! `}
@@ -32,7 +61,7 @@ class Index extends Component {
             memo,
             authorId
         }
-        this.props.editMessage(data, cell)
+        this.props.selectTemplate(data, cell)
     }
     
     validButton = () => {
@@ -43,16 +72,26 @@ class Index extends Component {
         }
     }
 
+    pageOnClick = (index) => {
+        this.props.fetchGetTemplates(`limit=15&offset=${index*15}&sortCreatedAt=desc`)
+    }
+
     render() {
-        console.log(this.props)
         return (
             <div className={`row`}>
+                <Modal visible={this.state.visible}
+                       onOk={this.toggleErrorModal}
+                       onCancel={this.toggleErrorModal}>
+                    <Alerts strong={this.state.errorMsg}
+                            state={"danger"}/>
+                </Modal>
                 <div className={`col-8`}>
                     <SelectTempSearch searchTemplates={this.props.searchTemplate}
                                       fetchGetTemplates={this.props.fetchGetTemplates}
                                       templates={this.props.messageForm.rows}/>
                     <SelectTempTable dataSource={this.props.messageForm.rows}
                                      onDoubleClick={this.getTemplateOne}/>
+                    <Pagination pages={this.props.messageForm.count / 15} onClick={this.pageOnClick}/>
                     {this.renderWarning()}
                 </div>
                 <div className={`col-4`}>
@@ -73,7 +112,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchGetTemplates: bindActionCreators(actions.fetchGetTemplates, dispatch),
     searchTemplate: bindActionCreators(actions.searchTemplates, dispatch),
-    editMessage: bindActionCreators(actions.editMessages, dispatch)
+    selectTemplate: bindActionCreators(actions.selectTemplate, dispatch)
 })
 
 export default connect(

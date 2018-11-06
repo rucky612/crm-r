@@ -2,6 +2,13 @@ import React, {Component} from 'react'
 
 class Index extends Component {
 
+    static defaultProps = {
+        columns: [],
+        dataSource: [],
+        align: "",
+        selectRow: () => {}
+    }
+
     cellClassName = (align) => {
         if (align === 'center') {
             return 'text-align--center'
