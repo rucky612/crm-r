@@ -18,7 +18,7 @@ class Index extends Component {
                     <Switch>
                         <Route path="/messages/create/select" component={SelectTemp}/>
                         <Route path="/messages/create/receivers" component={InsertReceivers}/>
-                        <Redirect from="/" to="/messages/create/select"/>
+                        <Redirect from="/messages/create" to="/messages/create/select"/>
                     </Switch>
                 </div>
             </article>

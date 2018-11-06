@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Input from '../../../../components/Input'
+import _filter from 'lodash/filter'
 
 class Index extends Component {
 
@@ -18,9 +19,25 @@ class Index extends Component {
             searchValue: target.value,
         })
     }
+    
+    onReset = () => {
+        this.props.fetchGetTemplates(`limit=15&offset=0&sortCreatedAt=desc`)
+        this.setState({
+            ...this.state,
+            buttonValue: false
+        })
+    }
 
     onSearch = () => {
-
+        const data = _filter(this.props.templates, (item) => {
+            return item.key.includes(this.state.searchValue) || item.title.includes(this.state.searchValue)
+        })
+        this.props.searchTemplates(data)
+        this.setState({
+            ...this.state,
+            searchValue: "",
+            buttonValue: true
+        })
     }
 
     onButton = () => {
@@ -29,7 +46,7 @@ class Index extends Component {
                            onClick={this.onSearch}>검색</button>
         } else {
             return <button className={`btn btn-secondary d-inline-block`}
-                           onClick={this.onSearch}>초기화</button>
+                           onClick={this.onReset}>초기화</button>
         }
     }
 

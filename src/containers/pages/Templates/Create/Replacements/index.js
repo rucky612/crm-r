@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
-import * as actions from '../../../../../actions'
+import * as actions from '../../../../../actions/template'
 import Alerts from '../../../../components/Alerts'
 import ReplacementsTable from './ReplacementsTable'
 import connect from 'react-redux/es/connect/connect'

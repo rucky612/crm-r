@@ -5,7 +5,7 @@ import Modal from '../../../components/Modal'
 import Alerts from '../../../components/Alerts'
 import Replacements from './Replacements'
 import {bindActionCreators} from 'redux'
-import * as actions from '../../../../actions'
+import * as actions from '../../../../actions/template'
 import connect from 'react-redux/es/connect/connect'
 import templateValidate from '../../../../utils/validate'
 

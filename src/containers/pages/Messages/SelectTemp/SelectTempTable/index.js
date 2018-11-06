@@ -50,6 +50,7 @@ class Index extends Component {
     render() {
         return (
             <Table columns={this.columns}
+                   selectRow={this.props.onDoubleClick}
                    dataSource={this.props.dataSource}
                    align={`center`}>
             </Table>

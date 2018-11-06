@@ -4,7 +4,7 @@ import Table from '../../../../components/Table'
 import moment from 'moment'
 import {bindActionCreators} from "redux";
 import connect from "react-redux/es/connect/connect";
-import * as actions from '../../../../../actions'
+import * as actions from '../../../../../actions/template'
 
 class Index extends Component {
     constructor(props) {

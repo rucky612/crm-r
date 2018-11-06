@@ -8,7 +8,7 @@ class Index extends Component {
         this.columns = [
             {
                 title: '수신자 번호',
-                dataIndex: 'key',
+                dataIndex: 'phoneNum',
             },
             {
                 title: 'key1',
@@ -25,7 +25,10 @@ class Index extends Component {
         ]
     }
 
+    
+
     render() {
+        console.log(this.props)
         return (
             <Table columns={this.columns}
                    dataSource={this.props.dataSource}

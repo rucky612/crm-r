@@ -4,7 +4,7 @@ import queryString from 'query-string'
 import HomeTable from './HomeTable'
 import {bindActionCreators} from "redux";
 import connect from "react-redux/es/connect/connect";
-import * as actions from '../../../../actions'
+import * as actions from '../../../../actions/template'
 import Loader from '../../../components/Loader'
 import Modal from '../../../components/Modal'
 import Alerts from '../../../components/Alerts'

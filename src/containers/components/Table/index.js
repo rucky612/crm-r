@@ -14,9 +14,6 @@ class Index extends Component {
         if (!this.props.columns) return
         return columns.map((item, index) => {
             return <th key={index}
-                       ref={el => {
-                           this[item.dataIndex] = el
-                       }}
                        scope="col-1">{item.title}</th>
         })
     }
@@ -24,7 +21,7 @@ class Index extends Component {
     tableRows = (dataSource) => {
         if (!dataSource) return
         return dataSource.map((cell, index) => {
-            return <tr key={index}>
+            return <tr key={index} onDoubleClick={() => this.props.selectRow(cell)}>
                 {this.tableCells(cell, index)}
             </tr>
         })

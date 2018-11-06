@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import connect from 'react-redux/es/connect/connect'
 import {bindActionCreators} from "redux";
-import * as actions from '../../../../actions'
+import * as actions from '../../../../actions/messages'
 import Alerts from '../../../components/Alerts'
-import ReceiversForm from './ReceiversForm'
 import ReceiversTable from './ReceiversTable'
-
+import SelectTempForm from '../SelectTempForm'
 
 class Index extends Component {
 
@@ -24,13 +23,13 @@ class Index extends Component {
                 <div className={`col-8`}>
                     <ReceiversTable receivers={this.props.messageForm.receivers}/>
                     {this.renderWarning()}
-                    <button
-                            className={`btn btn-info btn-block mt-4`}>
+                    <button className={`btn btn-info btn-block mt-4`}
+                            onClick={this.props.addReceivers}>
                         수신자추가
                     </button>
                 </div>
                 <div className={`col-4`}>
-                    <ReceiversForm/>
+                    <SelectTempForm/>
                 </div>
                 <div className={`col-12`}>
                     <button className={`btn btn-primary d-inline-block float-right`} >전송</button>
@@ -45,7 +44,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchRequest: bindActionCreators(actions.fetchRequestGet, dispatch),
+    addReceivers: bindActionCreators(actions.addReceivers, dispatch)
 })
 
 export default connect(
