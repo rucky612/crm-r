@@ -71,6 +71,8 @@ class Index extends Component {
                 }).map(item => {
                     return {
                         phoneNum: `+82${item.phoneNum.slice(1)}`,
+                        authorId: item.authorId,
+                        memo: item.memo,
                         receivers: [
                             item.receivers
                         ]

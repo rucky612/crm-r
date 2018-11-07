@@ -3,6 +3,12 @@ import {withRouter} from 'react-router-dom'
 
 class Index extends Component {
 
+    static defaultProps = {
+        onClick: () => {},
+        onLeft: () => {},
+        onRight: () => {}
+    }
+
     activeIndex = (num = 1, index) => {
         return num === index ? "active" : ""
     }

@@ -16,7 +16,8 @@ class Index extends Component {
 
         this.state = {
             visible: false,
-            errorMsg: ""
+            errorMsg: "",
+            activeIndex: 1
         }
     }
     
@@ -72,8 +73,28 @@ class Index extends Component {
         }
     }
 
+    pageMove = (direction) => {
+        if(direction === "left" && this.state.activeIndex > 1) {
+            this.props.fetchGetTemplates(`limit=15&offset=${(this.state.activeIndex-2)*15}&sortCreatedAt=desc`)
+            this.setState({
+                ...this.state,
+                activeIndex: this.state.activeIndex - 1
+            })
+        } else if(direction === "right" && this.state.activeIndex < Math.ceil(this.props.messageForm.count / 15)) {
+            this.props.fetchGetTemplates(`limit=15&offset=${(this.state.activeIndex)*15}&sortCreatedAt=desc`)
+            this.setState({
+                ...this.state,
+                activeIndex: this.state.activeIndex + 1
+            })
+        }
+    }
+
     pageOnClick = (index) => {
         this.props.fetchGetTemplates(`limit=15&offset=${index*15}&sortCreatedAt=desc`)
+        this.setState({
+            ...this.state,
+            activeIndex: index + 1
+        })
     }
 
     render() {
@@ -91,7 +112,11 @@ class Index extends Component {
                                       templates={this.props.messageForm.rows}/>
                     <SelectTempTable dataSource={this.props.messageForm.rows}
                                      onDoubleClick={this.getTemplateOne}/>
-                    <Pagination pages={this.props.messageForm.count / 15} onClick={this.pageOnClick}/>
+                    <Pagination pages={Math.ceil(this.props.messageForm.count / 15)}
+                                activeCurrent={this.state.activeIndex}
+                                onLeft={() => this.pageMove("left")}
+                                onRight={() => this.pageMove("right")}
+                                onClick={this.pageOnClick}/>
                     {this.renderWarning()}
                 </div>
                 <div className={`col-4`}>

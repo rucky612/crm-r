@@ -14,18 +14,18 @@ export default function (state = initState, action) {
                 ...state,
                 error: null
             }
-        case MESSAGES.FETCH_REQUEST.GET:
+        case MESSAGES.FETCH_REQUEST.GET_RECEIVERS:
             return {
                 ...state,
                 isLoading: true
             }
-        case MESSAGES.FETCH_SUCCESS.GET:
+        case MESSAGES.FETCH_SUCCESS.GET_RECEIVERS:
             return {
                 ...state,
                 ...action.response,
                 isLoading: false
             }
-        case MESSAGES.FETCH_FAIL.GET:
+        case MESSAGES.FETCH_FAIL.GET_RECEIVERS:
             return {
                 ...state,
                 error: action.error,

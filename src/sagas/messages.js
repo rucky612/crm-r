@@ -42,6 +42,45 @@ function* postMessageSaga({message}) {
     }
 }
 
+function* gettMessageSaga({query}) {
+    try {
+        const res = yield axios.get(`${URL}/apis/${version}/messages/?${query}`)
+        yield put({
+            type: MESSAGES.FETCH_SUCCESS.GET,
+            response: res.data
+        })
+    } catch (e) {
+        yield put({
+            type: MESSAGES.FETCH_FAIL.GET,
+            error: errorMessage(e)
+        })
+    } finally {
+        yield put({
+            type: MESSAGES.ERROR_RESET,
+        })
+    }
+}
+
+function* getReceiversSaga({id, query}) {
+    try {
+        const res = yield axios.get(`${URL}/apis/${version}/messages/${id}/receivers?${query}`)
+        yield put({
+            type: MESSAGES.FETCH_SUCCESS.GET_RECEIVERS,
+            response: res.data
+        })
+    } catch (e) {
+        yield put({
+            type: MESSAGES.FETCH_FAIL.GET_RECEIVERS,
+            error: errorMessage(e)
+        })
+    } finally {
+        yield put({
+            type: MESSAGES.ERROR_RESET,
+        })
+    }
+}
+
+
 function* watchGetTemplates() {
     yield takeEvery(MESSAGES.FETCH_REQUEST.GET_TEMPLATES, getTemplatesSaga)
 }
@@ -50,9 +89,39 @@ function* watchPostMessage() {
     yield takeEvery(MESSAGES.FETCH_REQUEST.POST, postMessageSaga)
 }
 
+function* watchGetMessage() {
+    yield takeEvery(MESSAGES.FETCH_REQUEST.GET, gettMessageSaga)
+}
+
+function* watchGetReceivers() {
+    yield takeEvery(MESSAGES.FETCH_REQUEST.GET_RECEIVERS, getReceiversSaga)
+}
+
 export default function* root() {
     yield all([
         yield fork(watchGetTemplates),
-        yield fork(watchPostMessage)
+        yield fork(watchPostMessage),
+        yield fork(watchGetMessage),
+        yield fork(watchGetReceivers),
     ])
 }
+
+// for(var i = 1; i < 101; i++) {
+//     const dummy = {
+//         "authorId": i,
+//         "templateKey": i,
+//         "memo": `memo${i}`,
+//         "receivers": [
+//             {
+//                 "phoneNum": `+82101111${1000 + i}`,
+//                 "replacements": i%2 === 0 ? [
+//                     {
+//                         "key": `keyword${i}`,
+//                         "value": `mock replacement 기본값 ${i}`
+//                     }
+//                 ] : []
+//             }
+//         ]
+//     }
+//     yield axios.post(`${URL}/apis/${version}/messages`,dummy)
+// }

@@ -147,14 +147,14 @@ export default function* root() {
 //         title: `mock${i}`,
 //         body: `mock body test${i} :keyword${i}:`,
 //         memo: `memo${i}`,
-//         replacements: [
+//         replacements: i%2 === 0 ? [
 //             {
 //                 title: `mock replacement ${i}`,
 //                 keyword: `keyword${i}`,
 //                 maxByte: i,
 //                 defaultValue: `mock replacement 기본값 ${i}`
 //             }
-//         ]
+//         ] : []
 //     }
 //     yield axios.post(`${URL}/apis/${version}/templates`, repeat)
 // }

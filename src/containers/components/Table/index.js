@@ -57,7 +57,7 @@ class Index extends Component {
     render() {
         return (
             <div>
-                <table className="table">
+                <table className="table table-hover">
                     <thead className="thead-dark">
                     <tr>
                         {this.tableHeader(this.props.columns)}

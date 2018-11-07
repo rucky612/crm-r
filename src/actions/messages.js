@@ -10,6 +10,17 @@ export const fetchPostMessage = (message) => ({
     message
 })
 
+export const fetchGetMessages = (query) => ({
+    type: MESSAGES.FETCH_REQUEST.GET,
+    query
+})
+
+export const fetchGetReceivers = (id, query) => ({
+    type: MESSAGES.FETCH_REQUEST.GET_RECEIVERS,
+    id,
+    query
+})
+
 export const selectTemplate = (info, data) => ({
     type: MESSAGES.SELECT_TEMPLATE,
     info,
