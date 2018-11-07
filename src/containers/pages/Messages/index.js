@@ -3,13 +3,16 @@ import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import Select from './Create/Select'
 import Receivers from './Create/Receivers'
 import Home from './Home'
+import Receiver from './Receiver'
 
 class Index extends Component {
 
     renderHead = () => {
-        if(this.props.location.pathname.includes(`home`)) {
+        if (this.props.location.pathname.includes("home/receivers")) {
+           return <h3>수신자 리스트</h3>
+        } else if (this.props.location.pathname.includes(`home`)) {
             return <h3>메시지 내역</h3>
-        } else if(this.props.location.pathname.includes(`create`)) {
+        } else if (this.props.location.pathname.includes(`create`)) {
             return <h3>메시지 발송</h3>
         }
     }
@@ -24,8 +27,8 @@ class Index extends Component {
                     <Switch>
                         <Route path="/messages/create/select" component={Select}/>
                         <Route path="/messages/create/receivers" component={Receivers}/>
+                        <Route path="/messages/home/receivers/:id" component={Receiver}/>
                         <Route path="/messages/home" component={Home}/>
-                        <Route path="/messages/home/:id" component={Home}/>
                         <Redirect from="/messages/create" to="/messages/create/select"/>
                     </Switch>
                 </div>

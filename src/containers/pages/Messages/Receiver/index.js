@@ -6,9 +6,9 @@ import * as actions from '../../../../actions/messages'
 import Loader from '../../../components/Loader'
 import Modal from '../../../components/Modal'
 import Alerts from '../../../components/Alerts'
-import HomePagination from './HomePagination'
-import HomeTable from './HomeTable'
-import HomeSearch from './HomeSearch'
+import ReceiverPagination from './ReceiverPagination'
+import ReceiverSearch from './ReceiverSearch'
+import ReceiverTable from './ReceiverTable'
 
 class Index extends Component {
     constructor(props) {
@@ -22,23 +22,23 @@ class Index extends Component {
 
     componentDidMount() {
         if(this.props.location.search.length === 0) {
-            this.props.fetchGetMessages("limit=10&offset=0&sort=desc")
+            this.props.fetchGetReceivers(this.props.match.params.id, "limit=10&offset=0")
         } else {
-            this.props.fetchGetMessages(this.props.location.search.slice(1))
+            this.props.fetchGetReceivers(this.props.match.params.id, this.props.location.search.slice(1))
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if(this.props.location.search.length === 0) {
-            this.props.fetchGetMessages(nextProps.location.search.slice(1))
+            this.props.fetchGetReceivers(this.props.match.params.id, nextProps.location.search.slice(1))
         } else if (nextProps.location.search !== this.props.location.search && nextProps.location.search.length !== 0) {
-            this.props.fetchGetMessages(nextProps.location.search.slice(1))
+            this.props.fetchGetReceivers(this.props.match.params.id, nextProps.location.search.slice(1))
         }
-        if(nextProps.messageList.error !== null && !this.state.visible) {
+        if(nextProps.receiversList.error !== null && !this.state.visible) {
             this.setState({
                 ...this.state,
                 visible: true,
-                errorMsg: nextProps.messageList.error
+                errorMsg: nextProps.receiversList.error
             })
         }
     }
@@ -58,8 +58,8 @@ class Index extends Component {
     }
 
     render() {
-        if (this.props.location.search.length === 0) {
-            return <Redirect to={"/messages/home?limit=10&offset=0&sort=desc"}/>
+        if(this.props.location.search.length === 0) {
+            return <Redirect to={"?limit=10&offset=0"}/>
         }
         return (
             <section>
@@ -69,14 +69,14 @@ class Index extends Component {
                     <Alerts strong={this.state.errorMsg}
                             state={"danger"}/>
                 </Modal>
-                <HomeSearch/>
+                <ReceiverSearch/>
                 <div className={`position-relative`}>
-                    {this.visibleLoader(this.props.messageList.isLoading)}
-                    <HomeTable messageList={this.props.messageList.rows}
-                               fetchDelteMessages={this.props.fetchDelteMessages}
-                               fetchGetReceivers={this.props.fetchGetReceivers}/>
-                    <HomePagination count={this.props.messageList.count}
-                                    fetchGetMessages={this.props.fetchGetMessages}/>
+                    {this.visibleLoader(this.props.receiversList.isLoading)}
+                    <ReceiverTable receiversList={this.props.receiversList.rows}
+                                   fetchGetReceivers={this.props.fetchGetReceivers}/>
+                    <ReceiverPagination count={this.props.receiversList.count}
+                                        paramId={this.props.match.params.id}
+                                        fetchGetReceivers={this.props.fetchGetReceivers}/>
                 </div>
             </section>
         )
@@ -84,14 +84,11 @@ class Index extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    messageList: state.messageList,
     receiversList: state.receiversList
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchGetMessages: bindActionCreators(actions.fetchGetMessages, dispatch),
     fetchGetReceivers: bindActionCreators(actions.fetchGetReceivers, dispatch),
-    fetchDelteMessages: bindActionCreators(actions.fetchDelteMessages, dispatch)
 })
 
 export default connect(

@@ -5,6 +5,12 @@ export const fetchGetTemplates = (query) => ({
     query
 })
 
+export const fetchGetReceivers = (id, query) => ({
+    type: MESSAGES.FETCH_REQUEST.GET_RECEIVERS,
+    id,
+    query
+})
+
 export const fetchPostMessage = (message) => ({
     type: MESSAGES.FETCH_REQUEST.POST,
     message
@@ -15,8 +21,8 @@ export const fetchGetMessages = (query) => ({
     query
 })
 
-export const fetchGetReceivers = (id, query) => ({
-    type: MESSAGES.FETCH_REQUEST.GET_RECEIVERS,
+export const fetchDelteMessages = (id, query) => ({
+    type: MESSAGES.FETCH_REQUEST.DELETE,
     id,
     query
 })

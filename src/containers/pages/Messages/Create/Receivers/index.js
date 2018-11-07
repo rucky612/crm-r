@@ -20,7 +20,7 @@ class Index extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.messageForm.error !== null && !this.state.visible) {
+        if (nextProps.messageForm.error !== null && !this.state.visible) {
             this.setState({
                 ...this.state,
                 visible: true,
@@ -46,11 +46,11 @@ class Index extends Component {
     }
 
     renderAddReceivers = (data) => {
-        if(!data.hasOwnProperty("id")) {
+        if (!data.hasOwnProperty("id")) {
             return <button className={`btn btn-secondary btn-block`} disabled={true}>X</button>
         } else {
             return <button className={`btn btn-info btn-block mt-4`}
-                    onClick={this.props.addReceivers}>
+                           onClick={this.props.addReceivers}>
                 수신자추가
             </button>
         }
@@ -61,9 +61,10 @@ class Index extends Component {
         const send = {
             templateKey: message.templateKey,
             memo: message.memo,
-        receivers: [
+            authorId: message.authorId,
+            receivers: [
                 ...message.receivers.filter(item => {
-                    if(item.phoneNum.length >= 10 && item.phoneNum.length <= 11) {
+                    if (item.phoneNum.length >= 10 && item.phoneNum.length <= 11) {
                         boolean = true
                         return true
                     }
@@ -80,12 +81,11 @@ class Index extends Component {
                 })
             ]
         }
-        console.log(send)
         boolean ? this.props.fetchPostMessage(send) : alert("번호를 확인해주세요")
     }
 
     render() {
-        if(!this.props.messageForm.row.hasOwnProperty("id")) {
+        if (!this.props.messageForm.row.hasOwnProperty("id")) {
             return <Redirect to={`/messages/create/select`}/>
         }
         return (
@@ -108,7 +108,8 @@ class Index extends Component {
                 </div>
                 <div className={`col-12`}>
                     <button className={`btn btn-primary d-inline-block float-right`}
-                            onClick={() => this.sendMessage(this.props.messageForm)}>전송</button>
+                            onClick={() => this.sendMessage(this.props.messageForm)}>전송
+                    </button>
                 </div>
             </div>
         )

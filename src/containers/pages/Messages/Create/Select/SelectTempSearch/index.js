@@ -21,7 +21,7 @@ class Index extends Component {
     }
     
     onReset = () => {
-        this.props.fetchGetTemplates(`limit=15&offset=0&sortCreatedAt=desc`)
+        this.props.fetchGetTemplates(`limit=10000&sortCreatedAt=desc`)
         this.setState({
             ...this.state,
             buttonValue: false

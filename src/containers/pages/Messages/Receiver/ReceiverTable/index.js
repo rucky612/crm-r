@@ -9,11 +9,11 @@ class Index extends Component {
 
         this.columns = [
             {
-                title: '템플릿 키',
-                dataIndex: 'templateKey',
+                title: '수신자 번호',
+                dataIndex: 'phoneNum',
             },
             {
-                title: '템플릿 제목',
+                title: '제목',
                 dataIndex: 'title',
             },
             {
@@ -21,28 +21,40 @@ class Index extends Component {
                 dataIndex: 'body',
             },
             {
-                title: '메모',
-                dataIndex: 'memo',
+                title: '발송상태',
+                render: ({rowData}) => {
+                    return <span className={`badge badge-${this.sendState(rowData)}`}>{this.stateString(rowData)}</span>
+                }
             },
             {
                 title: '최근발송일',
                 dataIndex: 'updatedAt',
             },
-            {
-                title: '삭제',
-                dataIndex: '',
-                render: ({rowData}) => {
-                    return <button className={`btn btn-danger btn-sm`}
-                                   onClick={() => {
-                                       this.deleteMessage(rowData)
-                                   }}>삭제</button>
-                }
-            },
         ]
     }
 
-    deleteMessage = (cell) => {
-        this.props.fetchDelteMessages(cell.id, this.props.location.search)
+    stateString = (cell) => {
+        if(cell.status === "receiverStatusPending") {
+            return "Pending"
+        } else if(cell.status === "receiverStatusSuccess") {
+            return "Success"
+        } else if(cell.status === "receiverStatusFail") {
+            return "Fail"
+        } else {
+            return "No Status"
+        }
+    }
+
+    sendState = (cell) => {
+        if(cell.status === "receiverStatusPending") {
+            return "info"
+        } else if(cell.status === "receiverStatusSuccess") {
+            return "success"
+        } else if(cell.status === "receiverStatusFail") {
+            return "danger"
+        } else {
+            return "secondary"
+        }
     }
 
     formatData = (dataSource) => {
@@ -51,24 +63,16 @@ class Index extends Component {
             const updated = new Date(Math.ceil(item.updatedAt/1000))
             return {
                 ...item,
-                templateKey: item.template.key,
-                title: item.template.title,
-                body: item.template.body,
                 createdAt: moment(created).format('YY년 MM일 DD일'),
                 updatedAt: moment(updated).format('YY년 MM일 DD일'),
             }
         })
     }
 
-    rowSelect = (cell) => {
-        this.props.history.push(`/messages/home/receivers/${cell.id}`)
-    }
-
     render() {
         return (
             <Table columns={this.columns}
-                   dataSource={this.formatData(this.props.messageList)}
-                   selectRow={this.rowSelect}
+                   dataSource={this.formatData(this.props.receiversList)}
                    align={`center`}>
             </Table>
         )
