@@ -21,17 +21,13 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        if(this.props.location.search.length === 0) {
-            this.props.fetchGetMessages("limit=10&offset=0&sort=desc")
-        } else {
-            this.props.fetchGetMessages(this.props.location.search.slice(1))
-        }
+        this.props.fetchGetMessages(this.props.history.location.search.slice(1))
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.location.search.length === 0) {
-            this.props.fetchGetMessages(nextProps.location.search.slice(1))
-        } else if (nextProps.location.search !== this.props.location.search && nextProps.location.search.length !== 0) {
+        if (nextProps.location.search !== this.props.location.search
+            && nextProps.location.search.length !== 0
+            && this.props.location.search.length !== 0) {
             this.props.fetchGetMessages(nextProps.location.search.slice(1))
         }
         if(nextProps.messageList.error !== null && !this.state.visible) {
@@ -59,7 +55,8 @@ class Index extends Component {
 
     render() {
         if (this.props.location.search.length === 0) {
-            return <Redirect to={"/messages/home?limit=10&offset=0&sort=desc"}/>
+            console.log('hello')
+            return <Redirect to={"?limit=10&offset=0&sort=desc"}/>
         }
         return (
             <section>
@@ -91,7 +88,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchGetMessages: bindActionCreators(actions.fetchGetMessages, dispatch),
     fetchGetReceivers: bindActionCreators(actions.fetchGetReceivers, dispatch),
-    fetchDelteMessages: bindActionCreators(actions.fetchDelteMessages, dispatch)
+    fetchDelteMessages: bindActionCreators(actions.fetchDelteMessages, dispatch),
+    errorReset: bindActionCreators(actions.errorReset, dispatch)
 })
 
 export default connect(

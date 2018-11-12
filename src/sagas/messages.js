@@ -47,6 +47,9 @@ function* postMessageSaga({message}) {
     try {
         yield axios.post(`${URL}/apis/${version}/messages`, message)
         yield call(history.push, "/messages/home")
+        yield put({
+            type: MESSAGES.FETCH_SUCCESS.POST
+        })
     } catch (e) {
         yield put({
             type: MESSAGES.FETCH_FAIL.GET_TEMPLATES,
@@ -60,6 +63,7 @@ function* postMessageSaga({message}) {
 
 function* getMessageSaga({query}) {
     try {
+        if(!query) return;
         const res = yield axios.get(`${URL}/apis/${version}/messages/?${query}`)
         yield put({
             type: MESSAGES.FETCH_SUCCESS.GET,

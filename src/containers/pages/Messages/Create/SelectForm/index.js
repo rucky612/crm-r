@@ -30,7 +30,7 @@ class Index extends Component {
                            label={`템플릿 제목`}/>
                 </div>
                 <div className={`mb-3`}>
-                    <Textarea value={this.props.messageForm.row.body}
+                    <Textarea value={this.props.messageForm.row.body ? this.props.messageForm.row.body : ""}
                               readOnly={true}
                               rows={15}
                               label={`템플릿 내용`}/>

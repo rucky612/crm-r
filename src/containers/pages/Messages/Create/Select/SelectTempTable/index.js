@@ -21,7 +21,6 @@ class Index extends Component {
             {
                 title: '종류',
                 render: ({rowData}) => this.badgeState(rowData)
-
             },
             {
                 title: '메모',

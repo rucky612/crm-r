@@ -35,12 +35,14 @@ class Index extends Component {
 
     onFocus = ({target}) => {
         if (!this.props.readOnly) target.classList.add("sgsg-input--brand")
-        target.classList.add("sgsg-input--brand")
+        if (this.props.onFocus) this.props.onFocus()
     }
 
     onBlur = ({target}) => {
         target.classList.remove("sgsg-input--brand")
+        if (this.props.onBlur) this.props.onBlur()
     }
+
 
     render() {
         return (

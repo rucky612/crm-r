@@ -33,6 +33,10 @@ export const selectTemplate = (info, data) => ({
     data
 })
 
+export const resetTemplate = () => ({
+    type: MESSAGES.RESET_TEMPLATE,
+})
+
 export const searchTemplates = (rows) => ({
     type: MESSAGES.SEARCH_TEMPLATES,
     rows
@@ -47,8 +51,12 @@ export const removeReceivers = (index) => ({
     index
 })
 
-export const editReceiverPhone = (phoneNum, index) => ({
-    type: MESSAGES.EDIT_PHONENUM,
-    phoneNum,
+export const editReceiver = (target, index) => ({
+    type: MESSAGES.EDIT,
+    target,
     index
+})
+
+export const errorReset = () => ({
+    type: MESSAGES.ERROR_RESET
 })

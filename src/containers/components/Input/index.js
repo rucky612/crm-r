@@ -6,7 +6,8 @@ class Index extends Component {
     static defaultProps = {
         onChange: () => {
         },
-        readOnly: false
+        readOnly: false,
+        ruleClass: () => {}
     }
 
     renderPopover = (string = "") => {

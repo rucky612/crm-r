@@ -21,20 +21,16 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        if(this.props.location.search.length === 0) {
-            this.props.fetchGetReceivers(this.props.match.params.id, "limit=10&offset=0")
-        } else {
-            this.props.fetchGetReceivers(this.props.match.params.id, this.props.location.search.slice(1))
-        }
+        this.props.fetchGetReceivers(this.props.match.params.id, this.props.history.location.search.slice(1))
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.location.search.length === 0) {
-            this.props.fetchGetReceivers(this.props.match.params.id, nextProps.location.search.slice(1))
-        } else if (nextProps.location.search !== this.props.location.search && nextProps.location.search.length !== 0) {
+        if (nextProps.location.search !== this.props.location.search
+            && nextProps.location.search.length !== 0
+            && this.props.location.search.length !== 0) {
             this.props.fetchGetReceivers(this.props.match.params.id, nextProps.location.search.slice(1))
         }
-        if(nextProps.receiversList.error !== null && !this.state.visible) {
+        if (nextProps.receiversList.error !== null && !this.state.visible) {
             this.setState({
                 ...this.state,
                 visible: true,
@@ -58,7 +54,7 @@ class Index extends Component {
     }
 
     render() {
-        if(this.props.location.search.length === 0) {
+        if (this.props.location.search.length === 0) {
             return <Redirect to={"?limit=10&offset=0"}/>
         }
         return (

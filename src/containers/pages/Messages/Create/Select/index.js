@@ -26,27 +26,32 @@ class Index extends Component {
 
     componentDidMount() {
         this.props.fetchGetTemplates(`limit=10000&sortCreatedAt=desc`)
+        if(this.props.messageForm.row.hasOwnProperty("id")) {
+            this.props.resetTemplate()
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.messageForm.rows.length !== 0 && this.state.rows.length === 0) {
+        const {rows, limit, activeIndex, visible, count} = this.state
+        if (nextProps.messageForm.rows.length !== 0 && rows.length === 0) {
             this.setState({
                 ...this.state,
                 rows: [
-                    ...nextProps.messageForm.rows.slice(0, this.state.limit)
+                    ...nextProps.messageForm.rows.slice(0, limit)
                 ],
-                count: Math.ceil(nextProps.messageForm.count / this.state.limit)
+                count: Math.ceil(nextProps.messageForm.count / limit)
             })
-        } else if(nextProps.messageForm.count !== this.props.messageForm.coount) {
+        } else if (nextProps.messageForm.count !== this.props.messageForm.count) {
             this.setState({
                 ...this.state,
+                activeIndex: 1,
                 rows: [
-                    ...nextProps.messageForm.rows.slice(0, this.state.limit)
+                    ...nextProps.messageForm.rows.slice(0, limit)
                 ],
-                count: Math.ceil(nextProps.messageForm.count / this.state.limit)
+                count: Math.ceil(nextProps.messageForm.count / limit)
             })
         }
-        if (nextProps.messageForm.error !== null && !this.state.visible) {
+        if (nextProps.messageForm.error !== null && !visible) {
             this.setState({
                 ...this.state,
                 visible: true,
@@ -80,13 +85,13 @@ class Index extends Component {
         const data = {
             templateKey: key,
             memo,
-            authorId
+            authorId,
         }
         this.props.selectTemplate(data, cell)
     }
 
     validButton = () => {
-        if (this.props.messageForm.templateKey.length === 0) {
+        if (!this.props.messageForm.row.hasOwnProperty("id")) {
             return <button className={`btn btn-secondary d-inline-block float-right`}>X</button>
         } else {
             return <button className={`btn btn-primary d-inline-block float-right`}
@@ -95,35 +100,33 @@ class Index extends Component {
     }
 
     pageMove = (direction) => {
-        if (direction === "left" && this.state.activeIndex > 1) {
+        const {activeIndex, limit, count} = this.state
+        if (direction === "left" && activeIndex > 1) {
             this.setState({
                 ...this.state,
                 activeIndex: 1,
                 rows: [
-                    ...this.props.messageForm.rows.slice(0, 1*this.state.limit)
+                    ...this.props.messageForm.rows.slice(0, 1 * limit)
                 ]
             })
-        } else if (direction === "right" && this.state.activeIndex < this.state.count) {
+        } else if (direction === "right" && activeIndex < count) {
             this.setState({
                 ...this.state,
-                activeIndex: this.state.count,
+                activeIndex: count,
                 rows: [
-                    ...this.props.messageForm.rows.slice(
-                        (this.state.count - 1)*this.state.limit,
-                        (this.state.count)*this.state.limit
-                    )
+                    ...this.props.messageForm.rows.slice((count - 1) * limit, count * limit)
                 ],
-
             })
         }
     }
 
     pageOnClick = (index) => {
+        const {limit} = this.state
         this.setState({
             ...this.state,
             activeIndex: index + 1,
             rows: [
-                ...this.props.messageForm.rows.slice(index*this.state.limit, (index+1)*this.state.limit)
+                ...this.props.messageForm.rows.slice(index * limit, (index + 1) * limit)
             ]
         })
     }
@@ -168,7 +171,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchGetTemplates: bindActionCreators(actions.fetchGetTemplates, dispatch),
     searchTemplate: bindActionCreators(actions.searchTemplates, dispatch),
-    selectTemplate: bindActionCreators(actions.selectTemplate, dispatch)
+    selectTemplate: bindActionCreators(actions.selectTemplate, dispatch),
+    resetTemplate: bindActionCreators(actions.resetTemplate, dispatch),
 })
 
 export default connect(
