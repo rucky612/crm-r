@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class Index extends Component {
-
+  
   stateColor = () => {
     switch (this.props.state) {
       case "success":

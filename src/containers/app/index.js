@@ -5,9 +5,9 @@ import Main from '../layouts/Main/index'
 
 const App = () => (
   <div className={'sgsg-layout'}>
-    <Header/>
+    {/*<Header/>*/}
     <Aside/>
-    <Main/>
+    {/*<Main/>*/}
   </div>
 )
 

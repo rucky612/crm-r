@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import store, { history } from './store'
 import App from './containers/app'
 
-import 'sanitize.css/sanitize.css'
+// import 'sanitize.css/sanitize.css'
 import './main.scss'
 
 const target = document.querySelector('#root')

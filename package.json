@@ -15,7 +15,7 @@
     "react-scripts": "2.0.5"
   },
   "dependencies": {
-    "antd": "^3.10.1",
+    "antd": "^3.10.7",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
     "connected-react-router": "4.5.0",
@@ -33,7 +33,8 @@
     "redux-thunk": "2.3.0",
     "sanitize.css": "7.0.3",
     "sass-loader": "^7.1.0",
-    "serve": "10.0.2"
+    "serve": "10.0.2",
+    "styled-components": "^4.1.1"
   },
   "browserslist": [
     ">0.2%",
