@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
+import { Layout } from 'antd';
+
+const { Header } = Layout;
 
 class Index extends Component {
   render() {
     return (
-      <header className={`sgsg-header sgsg-stack`}>
-        <div className={`sgsg-stack__item sgsg-brand`}></div>
-        <div className={`sgsg-stack__item sgsg-header__content`}></div>
-      </header>
+      <Header style={{ background: '#fff', padding: 0 }} />
     )
   }
 }

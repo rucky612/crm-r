@@ -1,88 +1,70 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Popover from '../Popover'
+import styled from 'styled-components'
+import {switchColor, switchSize} from '../../constants'
+
+const Input = styled.input`
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: ${props => switchSize(props.size)};
+  color: ${props => switchColor(props.valid, "text")};
+  border: 1px solid ${props => switchColor(props.valid)};
+  border-radius: 3px;
+  outline: none;
+  &:focus {
+      border: 1px solid #716aca;
+      border-radius: 3px;
+      box-shadow: 2px 2px 5px #716aca;
+  }
+`
+const InputHelp = styled.p`
+  font-weight: 500;
+  color: ${props => switchColor(props.valid, "text")};
+`
 
 class Index extends Component {
+  static defaultProps = {
+    type: 'text',
+    name: '',
+    size: '',
+    value: '',
+    readOnly: false,
+    onChange: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
+    placeholder: '',
+    valid: '',
+    help: '',
+    popover: ''
+  }
 
-    static defaultProps = {
-        onChange: () => {
-        },
-        readOnly: false,
-        ruleClass: () => {}
+  renderPopover = (string = '') => {
+    if (string.length !== 0) {
+      return <Popover bodyText={string}/>
+    } else {
+      return
     }
+  }
 
-    renderPopover = (string = "") => {
-        if (string.length !== 0) {
-            return <Popover bodyText={string}/>
-        } else {
-            return;
-        }
-    }
+  renderHelp = (state = "", help = "") => {
+      if(help) {
+        return <InputHelp valid={state}>
+          {help}
+        </InputHelp>
+      }
+  }
 
-    renderHelp = (state) => {
-        if (state === "danger") {
-            return <p className={`sgsg-input__help sgsg-input__help--danger`}>
-                {this.props.help}
-            </p>
-        } else if (state === "warning") {
-            return <p className={`sgsg-input__help sgsg-input__help--warning`}>
-                {this.props.help}
-            </p>
-        }
-    }
-
-    inputSize = (size) => {
-        if (size === "large") {
-            return "sgsg-input--large"
-        } else if (size === "middle") {
-            return "sgsg-input--middle"
-        } else if (size === "small") {
-            return "sgsg-input--small"
-        } else {
-            return ""
-        }
-    }
-
-    inputColor = (state) => {
-        if (state === "danger") {
-            return "sgsg-input--danger"
-        } else if (state === "success") {
-            return "sgsg-input--success"
-        } else if (state === "warning") {
-            return "sgsg-input--warning"
-        } else {
-            return ""
-        }
-    }
-
-    onFocus = ({target}) => {
-        if (!this.props.readOnly) target.classList.add("sgsg-input--brand")
-        if (this.props.onFocus) this.props.onFocus()
-    }
-
-    onBlur = ({target}) => {
-        target.classList.remove("sgsg-input--brand")
-        if (this.props.onBlur) this.props.onBlur()
-    }
-
-    render() {
-        return (
-            <div className="input-group">
-                <label>{this.props.label}</label>
-                <input type={this.props.type ? this.props.type : "text"}
-                       spellCheck={false}
-                       name={this.props.name}
-                       value={this.props.value ? this.props.value : ""}
-                       readOnly={this.props.readOnly}
-                       className={`sgsg-input ${this.inputColor(this.props.valid)} ${this.inputSize(this.props.size)}`}
-                       onFocus={this.onFocus}
-                       onBlur={this.onBlur}
-                       onChange={this.props.onChange}
-                       placeholder={this.props.placeholder}/>
-                {this.renderHelp(this.props.valid)}
-                {this.renderPopover(this.props.popover)}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="input-group">
+        <label>{this.props.label}</label>
+        <Input {...this.props}/>
+        {this.renderHelp(this.props.valid, this.props.help)}
+        {this.renderPopover(this.props.popover)}
+      </div>
+    )
+  }
 }
 
 export default Index

@@ -4,7 +4,7 @@
 //@import "scss/bases/config";
 //@import "scss/components/config";
 //@import "scss/layouts/config";
-//@import "scss/pages/cofig";
+//@import "scss/pages/config";
 //@import "scss/utils/config";
 
 *,
@@ -50,4 +50,10 @@ a {
 
 ul {
   margin : 0;
+}
+
+#components-layout-demo-side .logo {
+  height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
 }

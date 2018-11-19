@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Input from '../../../../components/Input'
 import Textarea from '../../../../components/Input/Textarea'
 import connect from 'react-redux/es/connect/connect'
+import Mb3 from '../../../../components/Grid/Margin'
 
 class Index extends Component {
 
@@ -16,30 +17,35 @@ class Index extends Component {
         }
     }
 
+    checkNull = (text) => {
+      return text === null ? "" : text
+    }
+
     render() {
+        const {key, title, body, memo} = this.props.messageForm.row
         return (
             <div>
-                <div className={`mb-3`}>
-                    <Input value={this.props.messageForm.row.key}
+                <Mb3>
+                    <Input value={this.checkNull(key)}
                            readOnly={true}
                            label={`템플릿 키`}/>
-                </div>
-                <div className={`mb-3`}>
-                    <Input value={this.props.messageForm.row.title}
+                </Mb3>
+                <Mb3>
+                    <Input value={this.checkNull(title)}
                            readOnly={true}
                            label={`템플릿 제목`}/>
-                </div>
-                <div className={`mb-3`}>
-                    <Textarea value={this.props.messageForm.row.body ? this.props.messageForm.row.body : ""}
+                </Mb3>
+                <Mb3>
+                    <Textarea value={this.checkNull(body)}
                               readOnly={true}
                               rows={15}
                               label={`템플릿 내용`}/>
-                </div>
-                <div className={`mb-3`}>
-                    <Input value={this.props.messageForm.row.memo}
+                </Mb3>
+                <Mb3>
+                    <Input value={this.checkNull(memo)}
                            readOnly={true}
                            label={`템플릿 메모`}/>
-                </div>
+                </Mb3>
             </div>
         );
     }

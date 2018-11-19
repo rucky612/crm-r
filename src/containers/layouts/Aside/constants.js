@@ -2,6 +2,7 @@ export const AsideInfo = [
     {
         name: '템플릿 관리',
         url: '/templates',
+        icon: 'file',
         children: [
             {
                 name: '새로운 템플릿',
@@ -16,6 +17,7 @@ export const AsideInfo = [
     {
         name: '메시지 관리',
         url: '/messages',
+        icon: 'message',
         children: [
             {
                 name: '메시지 내역',
@@ -30,6 +32,7 @@ export const AsideInfo = [
     {
         name: '서비스 설정',
         url: '/utils',
+        icon: 'setting',
         children: []
     }
 ]

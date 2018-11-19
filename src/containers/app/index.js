@@ -1,14 +1,21 @@
 import React from 'react'
-import Header from '../layouts/Header/index'
-import Aside from '../layouts/Aside/index'
-import Main from '../layouts/Main/index'
+import { Layout } from 'antd'
+import Header from '../layouts/Header'
+import Aside from '../layouts/Aside'
+import Content from '../layouts/Content'
+import Footer from  '../layouts/Footer'
 
-const App = () => (
-  <div className={'sgsg-layout'}>
-    {/*<Header/>*/}
-    <Aside/>
-    {/*<Main/>*/}
-  </div>
-)
+const App = () => {
+    return (
+      <Layout style={{ minHeight: '100vh' }}>
+        <Aside/>
+        <Layout>
+          <Header/>
+          <Content/>
+          <Footer/>
+        </Layout>
+      </Layout>
+    );
+}
 
 export default App

@@ -82,7 +82,7 @@ function* getMessageSaga({query}) {
 
 function* deleteMessageSaga({id, query}) {
     try {
-        const res = yield axios.delete(`${URL}/apis/${version}/messages/${id}`)
+        yield axios.delete(`${URL}/apis/${version}/messages/${id}`)
         yield call(getMessageSaga, {query: query.slice(1)})
     } catch (e) {
         yield put({
