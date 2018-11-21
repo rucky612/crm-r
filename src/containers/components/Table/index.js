@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
 import { switchColor, sgsgColor } from '../../constants'
 import { lighten } from 'polished'
+import CheckBox from '../../components/CheckBox'
 
 const Table = styled.table`
   width: 100%;
@@ -54,7 +55,7 @@ class Index extends Component {
   rowSelectionHead = (rowSelection, selectAll) => {
     function renderCheckbox(selectAll) {
       if (selectAll) {
-        return <input type={`checkbox`}
+        return <CheckBox type={`checkbox`}
         />
       }
     }
@@ -67,8 +68,8 @@ class Index extends Component {
 
   rowSelectionCell = (rowSelection, cell, index) => {
     if (rowSelection) {
-      return <td>
-        <input type="checkbox"
+      return <td style={{fontSize: '0'}}>
+        <CheckBox type="checkbox"
                onChange={() => this.changeCheckeds(index, rowSelection.onChange)}
                checked={this.state.checkedRows.includes(index)}
         />

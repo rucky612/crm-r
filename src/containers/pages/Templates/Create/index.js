@@ -41,7 +41,7 @@ class Index extends Component {
 
   componentDidMount() {
     if (this.props.match.params.hasOwnProperty('id')) {
-      this.props.getTemplate(this.props.match.params.id)
+      this.props.getOneTemplate(this.props.match.params.id)
     } else {
       this.props.initTemplate()
     }
@@ -59,7 +59,7 @@ class Index extends Component {
     if (nextProps.template.hasOwnProperty('createdAt') && !nextProps.match.params.hasOwnProperty('id')) {
       this.props.initTemplate()
     } else if (!nextProps.template.hasOwnProperty('createdAt') && nextProps.match.params.hasOwnProperty('id') && !nextProps.template.isLoading) {
-      this.props.getTemplate(nextProps.match.params.id)
+      this.props.getOneTemplate(nextProps.match.params.id)
     }
   }
 
@@ -171,7 +171,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getTemplate: bindActionCreators(actions.fetchRequestGet, dispatch),
+  getOneTemplate: bindActionCreators(actions.fetchRequestGetOne, dispatch),
   editTemplate: bindActionCreators(actions.editTemplate, dispatch),
   addTemplate: bindActionCreators(actions.fetchRequestPost, dispatch),
   initTemplate: bindActionCreators(actions.fetchRequestInitPost, dispatch),

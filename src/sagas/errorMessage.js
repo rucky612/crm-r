@@ -1,6 +1,5 @@
 export default function (error) {
     let msg = "";
-    console.log({error})
     if(error.response !== undefined) {
         if(error.response.data.hasOwnProperty("rows")) {
             error.response.data.rows.forEach(item => {

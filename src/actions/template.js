@@ -20,15 +20,15 @@ export const fetchRequestGet = (query) => ({
     query
 })
 
+export const fetchRequestGetOne = (query) => ({
+  type: TEMPLATES.FETCH_REQUEST.GET_ONE,
+  query
+})
+
 export const fetchRequestDelete = (id, query) => ({
     type: TEMPLATES.FETCH_REQUEST.DELETE,
     id,
     query
-})
-
-export const fetchSuccess = (response) => ({
-    type: TEMPLATES.FETCH_SUCCESS,
-    response
 })
 
 export const editTemplate = ({target}) => ({

@@ -56,10 +56,14 @@ class Index extends Component {
   }
 
   render() {
+    const checkValueProps = {
+      ...this.props,
+      value: this.props.value === null ? "" : this.props.value
+    }
     return (
       <div className="input-group">
         <label>{this.props.label}</label>
-        <Input {...this.props}/>
+        <Input {...checkValueProps}/>
         {this.renderHelp(this.props.valid, this.props.help)}
         {this.renderPopover(this.props.popover)}
       </div>

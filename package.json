@@ -11,8 +11,17 @@
     "precommit": "pretty-quick --staged"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.15.0",
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.6.0",
+    "moxios": "^0.4.0",
+    "nock": "^10.0.2",
     "prettier": "1.14.3",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "redux-mock-store": "^1.5.3"
   },
   "dependencies": {
     "antd": "^3.10.7",
@@ -45,5 +54,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  }
 }

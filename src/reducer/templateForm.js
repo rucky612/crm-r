@@ -22,7 +22,7 @@ export default function (state = initState, action) {
             return {
                 ...initState,
             }
-        case TEMPLATES.FETCH_REQUEST.GET:
+        case TEMPLATES.FETCH_REQUEST.GET_ONE:
         case TEMPLATES.FETCH_REQUEST.POST:
             return {
                 ...state,
@@ -39,6 +39,7 @@ export default function (state = initState, action) {
                 ...action.response,
                 isLoading: false
             }
+        case TEMPLATES.FETCH_FAIL.GET_ONE:
         case TEMPLATES.FETCH_FAIL.POST:
         case TEMPLATES.FETCH_FAIL.PUT:
             return {
