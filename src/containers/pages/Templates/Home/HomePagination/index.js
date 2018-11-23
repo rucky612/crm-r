@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import Pagnation from '../../../../components/Pagnation'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 
 class Index extends Component {
 

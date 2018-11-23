@@ -42,3 +42,12 @@ export const mockEdit = {
     value: 'test edit template or replacements'
   }
 }
+
+export const mockInputEvent = (inputName = "", inputValue = "") => {
+  return {
+    target: {
+      name: inputName,
+      value: inputValue ? inputValue : `test input ${inputName}`
+    }
+  }
+}

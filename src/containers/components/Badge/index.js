@@ -15,6 +15,7 @@ const Badge = styled.span`
   padding: 0 6px;
   border-radius: 4px;
 `
+Badge.displayName = 'Badge'
 
 class Index extends Component {
 

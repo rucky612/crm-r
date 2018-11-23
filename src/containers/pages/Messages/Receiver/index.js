@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 import * as actions from '../../../../actions/messages'
 import Loader from '../../../components/Loader'
 import Modal from '../../../components/Modal'

@@ -8,9 +8,6 @@ export let mockState = reducer(undefined, {})
 
 describe('templates reducers', () => {
 
-  beforeEach(() => {
-  })
-
   it('should return initial state', () => {
     expect(mockState).toEqual(mockTemplateForm)
   })

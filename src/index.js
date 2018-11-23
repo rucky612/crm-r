@@ -5,7 +5,6 @@ import { ConnectedRouter } from 'connected-react-router'
 import store, { history } from './store'
 import App from './containers/app'
 
-// import 'sanitize.css/sanitize.css'
 import './main.scss'
 
 const target = document.querySelector('#root')
@@ -13,9 +12,7 @@ const target = document.querySelector('#root')
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
         <App />
-      </div>
     </ConnectedRouter>
   </Provider>,
   target

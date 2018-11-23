@@ -9,7 +9,7 @@ import Alerts from '../../../components/Alerts'
 import Replacements from './Replacements'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../../../actions/template'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 import templateValidate from '../../../../utils/validate'
 import { Row, Col } from 'antd'
 
@@ -40,8 +40,9 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.hasOwnProperty('id')) {
-      this.props.getOneTemplate(this.props.match.params.id)
+    const { match: { params } } = this.props
+    if (params.hasOwnProperty('id')) {
+      this.props.getOneTemplate(params.id)
     } else {
       this.props.initTemplate()
     }
@@ -99,22 +100,22 @@ class Index extends Component {
     const mailType = nowByte < 80 ? 'SMS' : 'LMS'
     return <Badge text={`${mailType} : ${nowByte}/${maxByte}byte`}
                   state={stateColor}
-            />
+    />
   }
 
   buttonChange = (template) => {
     const { finalPass } = templateValidate(template)
     if (!finalPass) {
       return <Button disabled={true}
-                     text={"X"}/>
+                     text={'X'}/>
     } else if (this.props.match.params.hasOwnProperty('id')) {
-      return <Button color={"brand"}
-                     text={"수정"}
+      return <Button color={'brand'}
+                     text={'수정'}
                      outline={true}
                      onClick={() => this.props.fixTemplate(this.props.template.id, this.props.template)}/>
     } else {
-      return <Button color={"brand"}
-                     text={"생성"}
+      return <Button color={'brand'}
+                     text={'생성'}
                      onClick={() => this.props.addTemplate(this.props.template)}/>
     }
   }
@@ -123,12 +124,6 @@ class Index extends Component {
     const { title, body, replacements } = this.state.invalidInput
     return (
       <section>
-        <Modal visible={this.state.visible}
-               onOk={this.toggleErrorModal}
-               onCancel={this.toggleErrorModal}>
-          <Alerts strong={this.state.errorMsg}
-                  state={'danger'}/>
-        </Modal>
         <Row gutter={16}>
           <Col span={8}>
             <Mb3>
@@ -140,13 +135,14 @@ class Index extends Component {
                      onChange={this.props.editTemplate}/>
             </Mb3>
             <Mb3>
-                            <Textarea name={'body'}
-                                      rows={18}
-                                      label={'내용'}
-                                      value={this.props.template.body}
-                                      valid={body.color}
-                                      help={body.msg}
-                                      onChange={this.props.editTemplate}/>
+              <Textarea name={'body'}
+                        rows={18}
+                        label={'내용'}
+                        value={this.props.template.body}
+                        valid={body.color}
+                        help={body.msg}
+                        onChange={this.props.editTemplate}
+              />
               {this.renderBadge(this.props.template.body, this.props.template.replacements)}
             </Mb3>
             <Mb3>
@@ -161,6 +157,12 @@ class Index extends Component {
             <Replacements replacementsValid={replacements}/>
           </Col>
         </Row>
+        <Modal visible={this.state.visible}
+               onOk={this.toggleErrorModal}
+               onCancel={this.toggleErrorModal}>
+          <Alerts strong={this.state.errorMsg}
+                  state={'danger'}/>
+        </Modal>
       </section>
     )
   }

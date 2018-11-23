@@ -4,7 +4,7 @@ import queryString from 'query-string'
 import { withRouter } from 'react-router-dom'
 import Input from '../../../../components/Input'
 import Button from '../../../../components/Button'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 import { Row, Col } from 'antd'
 
 const Mb5 = styled.div`

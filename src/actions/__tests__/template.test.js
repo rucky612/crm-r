@@ -9,6 +9,7 @@ describe('template', () => {
         type: TEMPLATES.FETCH_REQUEST.GET,
         query: testQuery
       }
+      
       expect(templateActions.fetchRequestGet(testQuery)).toEqual(expectActions)
     })
   })

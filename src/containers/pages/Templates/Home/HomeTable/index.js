@@ -4,7 +4,7 @@ import Table from '../../../../components/Table'
 import Button from '../../../../components/Button'
 import moment from 'moment'
 import { bindActionCreators } from 'redux'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 import * as actions from '../../../../../actions/template'
 
 

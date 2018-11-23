@@ -5,7 +5,7 @@ import * as actions from '../../../../../actions/template'
 import Alerts from '../../../../components/Alerts'
 import Button from '../../../../components/Button'
 import ReplacementsTable from './ReplacementsTable'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 
 const Replacement = styled.section`
   position: relative;

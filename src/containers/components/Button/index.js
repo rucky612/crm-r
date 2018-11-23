@@ -35,6 +35,8 @@ const Button = styled.button`
     `
   }
 `
+Button.displayName = 'Button'
+
 class Index extends Component {
   static defaultProps = {
     color: "",

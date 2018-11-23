@@ -14,7 +14,7 @@ const mockQuery = `?limit=10&offset=0`
 describe('saga', () => {
   describe('post request', () => {
     const gen = cloneableGenerator(saga.postTemplateSaga)(actions.fetchRequestPost(testTemplateForm))
-    
+
     it('should return success', () => {
       const clone = gen.clone()
       const mockPostTemp = saga.checkEmptyString(testTemplateForm)
