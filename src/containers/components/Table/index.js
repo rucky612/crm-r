@@ -32,6 +32,7 @@ const Table = styled.table`
     text-align: center;
   }
 `
+Table.displayName = 'Table'
 
 class Index extends Component {
 

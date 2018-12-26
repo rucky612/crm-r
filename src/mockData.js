@@ -51,3 +51,30 @@ export const mockInputEvent = (inputName = "", inputValue = "") => {
     }
   }
 }
+
+export const testFormData = (index) => {
+  return {
+    id: new Date(),
+    key: `test ${index}`,
+    title: `test title ${index}`,
+    body: `test body ${index}`,
+    memo: `test memo ${index}`,
+    replacements: [
+      {
+        title: `test replacement title ${index}`,
+        keyword: `test replacement keyword ${index}`,
+        maxByte: `${index + 20}`,
+        defaultValue: `test replacement defaultValue ${index}`
+      }
+    ],
+  }
+}
+
+export const mockHomeList = (index) => {
+  const templateList = {...mockTemplateList}
+  for(let i = 0; i < index; i++) {
+    templateList.rows.push(testFormData(i))
+  }
+  templateList.count = index
+  return templateList
+}

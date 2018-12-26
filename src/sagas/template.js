@@ -71,6 +71,7 @@ export function* getTemplateSaga({ query }) {
 
 export function* getOneTemplateSaga({ query }) {
   try {
+    console.log(query)
     const res = yield axios.get(`${URL}/apis/${version}/templates/${query}`)
     yield put({
       type: TEMPLATES.FETCH_SUCCESS.GET_ONE,

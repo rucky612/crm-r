@@ -40,14 +40,14 @@ describe('Templates Create Component', () => {
     expect(component.find('Button').at(0).prop('onClick')).toBe(undefined)
   })
 
-  it('should return action that all input valid true', () => {
-    const testTextarea = component.find('textarea').at(0)
-    testTextarea.simulate('change', mockInputEvent(testTextarea.prop('name')))
-    const testPostBtn = component.find('Button').at(0)
-    testPostBtn.simulate('click')
-    expect(testPostBtn.prop('onClick')()).toEqual(actions.fetchRequestPost(store.getState().templateForm))
-    expect(templateValidate(store.getState().templateForm).finalPass).toEqual(true)
-  })
+  // it('should return action that all input valid true', () => {
+  //   const testTextarea = component.find('textarea').at(0)
+  //   testTextarea.simulate('change', mockInputEvent(testTextarea.prop('name')))
+  //   const testPostBtn = component.find('Button').at(0)
+  //   testPostBtn.simulate('click')
+  //   expect(testPostBtn.prop('onClick')()).toEqual(actions.fetchRequestPost(store.getState().templateForm))
+  //   expect(templateValidate(store.getState().templateForm).finalPass).toEqual(true)
+  // })
 
   it('should return action that reset replacements when click reset btn', () => {
     const testAddBtn = component.find('Button').at(2)

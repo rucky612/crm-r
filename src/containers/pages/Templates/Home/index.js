@@ -92,18 +92,18 @@ class Index extends Component {
     }
     return (
       <section>
-        <Modal visible={this.state.visible}
-               onOk={this.toggleErrorModal}
-               onCancel={this.toggleErrorModal}>
-          <Alerts strong={this.state.errorMsg}
-                  state={'danger'}/>
-        </Modal>
         <HomeSearch/>
         <HomeContent>
           {this.visibleLoader(this.props.templateList.isLoading)}
           <HomeTable/>
           <HomePagination/>
         </HomeContent>
+        <Modal visible={this.state.visible}
+               onOk={this.toggleErrorModal}
+               onCancel={this.toggleErrorModal}>
+          <Alerts strong={this.state.errorMsg}
+                  state={'danger'}/>
+        </Modal>
       </section>
     )
   }

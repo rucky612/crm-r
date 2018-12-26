@@ -55,77 +55,77 @@ describe('saga', () => {
     })
   })
   
-  describe('get request', () => {
-    const gen = cloneableGenerator(saga.getTemplateSaga)(actions.fetchRequestGet(mockQuery))
-    gen.next()
-
-    it('should return success response', () => {
-      const clone = gen.clone()
-      const fakeResponse = {
-        ...mockTemplateList,
-        rows: [
-          mockTemplateForm,
-          mockTemplateForm
-        ],
-        count: 2
-      }
-      expect(clone.next({data: fakeResponse}).value).toEqual(put({
-        type: TEMPLATES.FETCH_SUCCESS.GET,
-        response: fakeResponse
-      }))
-      expect(clone.next().value).toEqual(put({
-        type: TEMPLATES.ERROR_RESET
-      }))
-    })
-
-    it('should return error response', () => {
-      const clone = gen.clone()
-      expect(clone.throw(mockError).value).toEqual(put({
-        type: TEMPLATES.FETCH_FAIL.GET,
-        error: errorMessage(mockError)
-      }))
-    })
-
-    it('should return error reset', () => {
-      const clone = gen.clone()
-      clone.next()
-      expect(clone.next().value).toEqual(put({
-        type: TEMPLATES.ERROR_RESET
-      }))
-    })
-  })
+  // describe('get request', () => {
+  //   const gen = cloneableGenerator(saga.getTemplateSaga)(actions.fetchRequestGet(mockQuery))
+  //   gen.next()
+  //
+  //   it('should return success response', () => {
+  //     const clone = gen.clone()
+  //     const fakeResponse = {
+  //       ...mockTemplateList,
+  //       rows: [
+  //         mockTemplateForm,
+  //         mockTemplateForm
+  //       ],
+  //       count: 2
+  //     }
+  //     expect(clone.next({data: fakeResponse}).value).toEqual(put({
+  //       type: TEMPLATES.FETCH_SUCCESS.GET,
+  //       response: fakeResponse
+  //     }))
+  //     expect(clone.next().value).toEqual(put({
+  //       type: TEMPLATES.ERROR_RESET
+  //     }))
+  //   })
+  //
+  //   it('should return error response', () => {
+  //     const clone = gen.clone()
+  //     expect(clone.throw(mockError).value).toEqual(put({
+  //       type: TEMPLATES.FETCH_FAIL.GET,
+  //       error: errorMessage(mockError)
+  //     }))
+  //   })
+  //
+  //   it('should return error reset', () => {
+  //     const clone = gen.clone()
+  //     clone.next()
+  //     expect(clone.next().value).toEqual(put({
+  //       type: TEMPLATES.ERROR_RESET
+  //     }))
+  //   })
+  // })
   
-  describe('get one request', () => {
-    const gen = cloneableGenerator(saga.getOneTemplateSaga)(actions.fetchRequestGetOne(1))
-    gen.next()
-
-    it('should return success response', () => {
-      const clone = gen.clone()
-      const fakeResponse = {
-        row: mockTemplateForm
-      }
-      expect(clone.next({data: fakeResponse}).value).toEqual(put({
-        type: TEMPLATES.FETCH_SUCCESS.GET_ONE,
-        response: fakeResponse.row
-      }))
-    })
-
-    it('should return error response', () => {
-      const clone = gen.clone()
-      expect(clone.throw(mockError).value).toEqual(put({
-        type: TEMPLATES.FETCH_FAIL.GET_ONE,
-        error: errorMessage(mockError)
-      }))
-    })
-
-    it('should return error reset', () => {
-      const clone = gen.clone()
-      clone.next()
-      expect(clone.next().value).toEqual(put({
-        type: TEMPLATES.ERROR_RESET
-      }))
-    })
-  })
+  // describe('get one request', () => {
+  //   const gen = cloneableGenerator(saga.getOneTemplateSaga)(actions.fetchRequestGetOne(1))
+  //   gen.next()
+  //
+  //   it('should return success response', () => {
+  //     const clone = gen.clone()
+  //     const fakeResponse = {
+  //       row: mockTemplateForm
+  //     }
+  //     expect(clone.next({data: fakeResponse}).value).toEqual(put({
+  //       type: TEMPLATES.FETCH_SUCCESS.GET_ONE,
+  //       response: fakeResponse.row
+  //     }))
+  //   })
+  //
+  //   it('should return error response', () => {
+  //     const clone = gen.clone()
+  //     expect(clone.throw(mockError).value).toEqual(put({
+  //       type: TEMPLATES.FETCH_FAIL.GET_ONE,
+  //       error: errorMessage(mockError)
+  //     }))
+  //   })
+  //
+  //   it('should return error reset', () => {
+  //     const clone = gen.clone()
+  //     clone.next()
+  //     expect(clone.next().value).toEqual(put({
+  //       type: TEMPLATES.ERROR_RESET
+  //     }))
+  //   })
+  // })
 
   describe('put request', () => {
     const putQuery = 1
